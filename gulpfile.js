@@ -296,7 +296,7 @@ gulp.task('netlify', function(callback) {
 
 gulp.task('serve', function(callback) {
   runSequence('clean',
-              ['lint', 'sass', 'baked:generate', 'watch'],
+              ['lint', 'sass', 'imagemin', 'baked:generate', 'watch'],
               'browser-sync',
               'minify-html',
               callback);
