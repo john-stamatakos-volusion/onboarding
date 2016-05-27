@@ -6,6 +6,11 @@
   <title>Page Title</title>
   <meta name="description" content="This is the page description.">
   <link rel="canonical" href="http://www.volusion.com/url" />  
+
+  <!-- stylesheet -->
+	<link href="/assets/stylesheets/main.css" media="all" rel="stylesheet" type="text/css" />
+	<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   
   <!-- og tags -->
   <meta property="og:title" content="Page Title" />
@@ -16,19 +21,420 @@
 
   <!-- robots -->
   <meta name="robots" content="noindex, nofollowindex, follow">
+  <link href="http://v2223016.zg4m7w74357a.demo47.volusion.com/a/a/v13/c/all.min.css?6_5_7.31.0.717_1309859965" rel="stylesheet" type="text/css">
 </head>
-<body class="section-class page-class">
+<body class="onboarding">
+
+	<div id="adminheader"><input type="hidden" id="vp-open-in-separate-tab" value="N"><!-- add google tag manager whenever top bar is visible, load it after so we have access to topbar variables --><link rel="stylesheet" href="/a/c/topbar.css"><div id="vp-top-bar" class="vp-top-bar vp-has-shadow" data-bind="css: { 'vp-cloak': false }">
+    <div class="vp-left-panel">
+        <!-- ko ifnot: isAdmin --><!-- /ko -->
+        <!-- ko if: isAdmin -->
+        <a data-bind="attr: { href: isDemo ? '/admin' : '/admin/dashboard.asp' }" title="Succeed online with Volusion's shopping cart software" class="vp-logo volusion_logo_link" href="/admin">
+            <img src="/assets/images/volusion_logo.png" alt="Volusion - shopping cart software" width="107" height="27">
+        </a>
+        <!-- /ko -->
+        <div class="toggle-wrap">
+            <a data-bind="attr: { href: isAdmin ? 'javaScript:void(0);' : '/admin/dashboard.asp', target: (openInSeparateTab &amp;&amp; !isAdmin) ? '_blank' : '_self'}, trackClickEvent: isAdmin ? 'Storefront' : 'Dashboard', css: {'toggle-active' : isAdmin}" class="toggle-btn admin-toggle toggle-active" href="javaScript:void(0);" target="_self">
+                <img data-bind="attr:{src: isAdmin ? '/assets/images/admin-active.png' : '/assets/images/admin.png'}" src="/assets/images/admin-active.png">
+            </a>
+            <a data-bind="attr: { href: !isAdmin ? 'javaScript:void(0);' : '/', target: (openInSeparateTab &amp;&amp; isAdmin) ? '_blank' : '_self'}, trackClickEvent: isAdmin ? 'Storefront' : 'Dashboard', css: {'toggle-active' : !isAdmin}" class="toggle-btn storefront-toggle" href="/" target="_self">
+                <img data-bind="attr:{src: !isAdmin ? '/assets/images/storefront-active.png' : '/assets/images/storefront.png'}" src="/assets/images/storefront.png">
+            </a>
+            <a class="btn btn-small buyNow" title="title" href="#">Buy Now</a>
+        </div>
+    </div>
+
+	<div class="vp-right-panel">
+		<div class="vp-dropdown-container" data-bind="if: !isAdmin, visible: !isAdmin" style="display: none;"></div>
+		<div class="vp-contact-us vp-dropdown-container" data-bind="if: isDemo, visible: isDemo">
+			<span class="vp-dropdown-toggle">Contact Us</span>
+			<div class="vp-dropdown">
+				<h3>Ready to get Started?</h3>
+				<p>We're here to help. Chat with one of our experts.</p>
+				<div class="vp-contact-info">
+					<img src="/a/a/v13/i/ContactUsPhotoHex.jpg" alt="Contact Us" width="98" height="100">
+					<table>
+						<tbody><tr>
+							<td>
+								<h4>Call us</h4>
+								<span data-number-label="USA" data-bind="text: phoneNumberUSA" class="vp-phone-number">1.888.750.5038</span>
+								<span data-number-label="Int'l" data-bind="text: phoneNumberIntl" class="vp-phone-number">00 44 800.048.8971</span>
+								<span href="javascript:" class="vp-phone-number vp-show-additional-numbers">More numbers</span>
+								<div class="vp-additional-numbers" style="display: none;">
+									<span data-number-label="UK" class="vp-phone-number">0800.048.8971</span>
+									<span data-number-label="AU" class="vp-phone-number">1800.509.375</span>
+								</div>
+							</td>
+							<td><span class="v13-icon-phone"></span></td>
+						</tr>
+						<tr class="vp-live-chat-trigger3" onclick="return VolusionChat.startLink();" onmouseover="this.style.cursor=&quot;pointer&quot;; this.style.opacity=&quot;.72&quot;" onmouseout="this.style.cursor=&quot;default&quot;; this.style.opacity=&quot;1&quot;"><td><h4 style="color: #fc6003;">Chat with us</h4></td><td><span class="v13-icon-chat"></span></td></tr>
+					</tbody></table>
+				</div>
+			</div>
+		</div>
+		<div class="vp-dropdown-container">
+			<span class="vp-dropdown-toggle">Get Help</span>
+			<form id="support-center-search" class="vp-dropdown">
+				<a data-bind="visible: pageHelpAttr, attr: pageHelpAttr" href="http://support.volusion.com" target="_blank" data-admin-help="true">Visit Our Support Site</a>
+				<a data-bind="visible: pageHelpAttr, attr: pageHelpAttr" href="javascript:" class="vp-help-with-page" data-admin-help="true">Get help with this page</a>
+			</form>
+		</div>
+		<div class="vp-dropdown-container">
+			<span class="vp-dropdown-toggle">Hi, <span data-bind="text: loggedInFirstName">John</span></span>
+			<div class="vp-dropdown">
+				<ul>
+					<li><span class="staticContent">Store ID: <span class="vp-admin-store-id" data-bind="text: formattedStoreId">02-223-016</span></span></li>
+					<li id="Notification_Panel_Alert_Icon" data-bind="visible: isAdmin &amp;&amp; adm_show_notifications" style="display: none;"><span class="ToolText"><a href="javascript:" onclick="Notification_Panel.ResetHidden();">[<span id="Notification_Count"></span>] Messages</a></span></li>
+					<li id="ToolsNav_MyVolusion"><span id="ToolsNav_MyVolusionLink" class="subnav ToolText"><a target="_blank" href="http://my.volusion.com">My Volusion</a></span></li>
+					<li id="ToolsNav_Logout"><span id="ToolsNav_LogoutLink" class="subnav ToolText"><a href="/login.asp?logout=yes">Log out</a></span></li>
+				</ul>
+			</div>
+		</div>
+		<!-- ko if: !isAdmin --><!-- /ko -->
+	</div>
+</div><script>
+    /*
+    This spaghetti code is here so it loads literally as fast as possible
+    which, in most cases, prevents the page from 'bouncing' down when it
+    loads
+    */
+    (function() {
+        var barHidden = getMerchantPreferences('admin-bar-hidden');
+        var barToggle = document.getElementById("vp-top-bar-toggle");
+        var isAdmin = /\/(admin|net)/.test(window.location.pathname);
+        if (barHidden === "true") {
+            barToggle.checked = true;
+        } else if(!isAdmin){
+            document.body.className += " vp-top-bar-padding";
+            barToggle.checked = false;
+        }
+
+        function getMerchantPreferences(key) {
+            var prefix = "vp-";
+            return localStorage.getItem(prefix + key);
+        }
+
+    })();
+
+    $(function () {
+        //Some pages don't include jquery.tools
+        if($.tools != undefined){
+            $(".admin-toggle, .storefront-toggle").tooltip({
+                position: 'bottom center'
+            });
+        }
+    });
+</script><script src="/a/j/v_gtm.js"></script><div id="top_content">
+					<div id="mainmenu">
+						<ul id="AdminMenuMain" class="adminMenuItems" unselectable="on">
+                            <li id="MainNav_Dashboard" unselectable="on" class="selected"><a class="MainMenuText" href="dashboard.asp">Dashboard</a></li>
+							<li id="MainNav_Orders" unselectable="on"><span class="MainMenuText">Orders</span>
+								<div class="SubMenuWrapper">
+									<ul>
+										<li class="subnav selected" id="Orders_SubNav_Overview" unselectable="on"><a id="Orders_ProcessOrders" href="TableViewer.asp?Table=Orders&amp;Orders_Open=Y&amp;IsASearch=Y&amp;isDefaultView=True" title="">Process Orders</a></li>
+    									<li class="subnav" id="Orders_SubNav_PhoneOrders" unselectable="on"><a id="Orders_PhoneOrderPage" href="phone_order.asp" title="">Phone Orders</a></li>                                      
+										<li class="subnav" id="Orders_SubNav_RecurringBilling" unselectable="on"><a id="Orders_RecurringBilling" href="TableViewer.asp?table=Recurring_Due&amp;isDefaultView=False" title="">Recurring
+											Billing</a></li>
+										<li class="subnav" id="Orders_SubNav_ReturnsRMAs" unselectable="on"><a id="Orders_ReturnsRMAs" href="TableViewer.asp?table=RMAs&amp;isDefaultView=True" title="">Returns/RMAs</a></li>
+                                       
+                                            <li class="subnav" id="Orders_SubNav_PointofSale" unselectable="on"><a id="Orders_PointofSale" href="../pos.asp" title="">Point of Sale</a></li>
+                                        
+										<li class="subnav" id="Orders_SubNav_AbandonedLiveCarts" unselectable="on"><a id="Orders_AbandonedLiveCarts" href="TableViewer.asp?table=CartIDLog" title="">Abandoned/Live Carts</a></li>
+									</ul>
+								</div> 
+							</li>
+							<li id="MainNav_Customers" unselectable="on"><span class="MainMenuText">Customers</span>
+								<div class="SubMenuWrapper">
+									<ul>
+										<li class="subnav selected" id="Customers_SubNav_CRM" unselectable="on"><a id="Customers_CRMSystem" href="TableViewer.asp?table=CRM_Tickets_Open&amp;isDefaultView=True" title="">CRM System</a></li>
+                                        <li class="subnav" id="Customers_SubNav_Accounts" unselectable="on"><a id="Customers_Accounts" href="TableViewer.asp?table=Customers" title="">Accounts</a></li>
+										<li class="subnav" id="Customers_SubNav_Reviews" unselectable="on"><a id="Customers_CustomerReviews" href="TableViewer.asp?table=Reviews" title="">Customer Reviews</a></li>
+                                        <li class="subnav" id="Customers_SubNav_Admin" unselectable="on"><a id="Customers_Administrators" href="TableViewer.asp?table=Admins" title="">Administrators</a></li>
+										<li class="subnav" id="Customers_SubNav_AdminHistory" unselectable="on"><a id="Customers_AdminHistory" href="AccessManager.asp" title="">Admin History</a></li>
+										<li class="subnav" id="Customers_SubNav_KB" unselectable="on"><a id="Customers_KnowledgeBase" href="TableViewer.asp?table=kb&amp;isDefaultView=True" title="">Knowledge Base</a></li>
+									</ul>
+								</div>
+							</li>
+							<li id="MainNav_Inventory" unselectable="on"><span class="MainMenuText">Inventory</span>
+								<div class="SubMenuWrapper">
+									<ul>
+										<li class="subnav selected" id="Inventory_SubNav_Cat" unselectable="on"><a id="Inventory_Categories" href="Display_Categories.asp" title="">Categories</a></li>
+										<li class="subnav" id="Inventory_SubNav_Products" unselectable="on"><a id="Inventory_Products" href="../xFerToNet.asp?URL=%2E%2E%2Fnet%2FProducts%2Easpx " title="">Products</a></li>
+										<li class="subnav" id="Inventory_SubNav_Options" unselectable="on"><a id="Inventory_Options" href="TableViewer.asp?table=Options&amp;isDefaultView=True" title="">Options</a></li>
+                                            <li class="subnav" id="Inventory_SubNav_Import" unselectable="on"><a id="Inventory_ImportExport" href="db_import.asp" title="">Import/Export</a></li>
+                                        <li class="subnav" id="Inventory_SubNav_Vendors" unselectable="on"><a id="Inventory_Vendors" href="TableViewer.asp?table=vendors" title="">Vendors</a></li>
+										<li class="subnav" id="Inventory_SubNav_PO" unselectable="on"><a id="Inventory_PurchaseOrders" href="TableViewer.asp?table=POs&amp;isDefaultView=True" title="">Purchase Orders</a></li>
+										<li class="subnav" id="Inventory_SubNav_Receiving" unselectable="on"><a id="Inventory_Receiving" href="inventory.asp" title="">Receiving</a></li>
+										<li class="subnav" id="Inventory_SubNav_ProdKey" unselectable="on"><a id="Inventory_ProductKeyDistribution" href="TableViewer.asp?table=Product_Keys" title="">Product Key Distribution</a></li>
+										<li class="subnav" id="Inventory_SubNav_Warehouses" unselectable="on"><a id="Inventory_Warehouses" href="TableViewer.asp?table=Warehouses" title="">Warehouses</a></li>
+									</ul>
+								</div>
+							</li>
+							<li id="MainNav_Marketing" unselectable="on"><span class="MainMenuText">Marketing</span>
+								<div class="SubMenuWrapper">
+									<ul>
+										<li class="subnav selected" id="Marketing_SubNav_Social" unselectable="on"><a id="Marketing_Social" href="../xFerToNet.asp?URL=%2E%2E%2Fnet%2FSocial%2Easpx">Social</a></li>
+										<li class="subnav" id="Marketing_SubNav_SocialStore" unselectable="on"><a id="Marketing_SocialStore" href="/admin/socialstore.asp">Facebook Store</a></li>
+                                    
+                                        <li class="subnav" id="Marketing_SubNav_Ebay" unselectable="on"><a href="eBaySplash.asp" title="">Sell on eBay</a></li>
+                                    
+                                            <li class="subnav" id="Marketing_SubNav_Amazon" unselectable="on"><a href="AmazonSplash.asp" title="">Sell on Amazon</a></li>
+                                        
+                                        <li class="subnav" id="Marketing_SubNav_DealOfTheDay" unselectable="on"><a id="Marketing_DealOfTheDay" href="TableViewer.asp?table=DealsOfTheDay" title="">Deal of the Day</a></li>
+                                        <li class="subnav" id="Marketing_SubNav_Coupons" unselectable="on"><a id="Marketing_CouponsDiscounts" href="TableViewer.asp?table=Discounts" title="">Coupons/Discounts</a></li>
+										<li class="subnav" id="Marketing_SubNav_NavMenu" unselectable="on"><a id="Marketing_NavMenuPromotions" href="TableViewer.asp?table=Specials&amp;isDefaultView=True" title="">Nav Menu Promotions</a></li>
+										<li class="subnav" id="Marketing_SubNav_MyRewards" unselectable="on"><a id="Marketing_MyRewards" href="wizard2.asp?type=rewards" title="">MyRewards</a></li>	
+                                        <li class="subnav" id="Marketing_SubNav_Newsletters" unselectable="on"><a id="Marketing_Newsletters" href="wizard2.asp?type=newsletters" title="">Newsletters</a></li>
+                                        <li class="subnav" id="Marketing_SubNav_GiftCert" unselectable="on"><a id="Marketing_GiftCertificates" href="TableViewer.asp?table=GiftCards" title="">Gift Certificates</a></li>
+										<li class="subnav" id="Marketing_SubNav_SEO" unselectable="on"><a id="Marketing_SEO" href="SEOFriendly.asp" title="">SEO</a></li>
+										<li class="subnav" id="Marketing_SubNav_Affiliates" unselectable="on"><a id="Marketing_Affiliates" href="TableViewer.asp?table=Customers_Affiliates&amp;isDefaultView=True" title="">Affiliates</a></li>
+										<li class="subnav" id="Marketing_SubNav_InstockReq" unselectable="on"><a id="Marketing_In-StockRequests" href="TableViewer.asp?table=Back_In_Stock_Requests" title="">In-stock Requests</a></li>
+									</ul>
+								</div>
+							</li>
+							<li id="MainNav_Design" unselectable="on"><span class="MainMenuText">Design</span>
+								<div class="SubMenuWrapper">
+									<ul>
+										<li class="subnav selected" id="Design_SubNav_Template" unselectable="on"><a id="Design_ChooseTemplate" href="wizard2.asp?type=design" title="">Template</a></li>
+										<li class="subnav" id="Design_SubNav_Logos" unselectable="on"><a id="Design_Logos" href="logos.asp" title="">Logos</a></li>
+									
+										<li class="subnav" id="Design_SubNav_SiteContent" unselectable="on"><a id="Design_SiteContent" href="Display_Articles.asp?CategoryType=Articles" title="">Site Content</a></li>
+										<li class="subnav" id="Design_SubNav_NavMenu" unselectable="on"><a id="Design_NavigationMenu" href="jmenu.asp" title="">Navigation Menu</a></li>
+										<li class="subnav" id="Design_SubNav_FileEditor" unselectable="on"><a id="Design_LiveEditFileEditor" href="LiveEdit.asp" title="">File Editor</a></li>
+										<li class="subnav" id="Design_SubNav_ProdDispSettings" unselectable="on"><a id="Design_DisplaySettings" href="DisplaySettings.asp" title="">Product Display Settings</a></li>
+										<li class="subnav" id="Design_SubNav_Slideshow" unselectable="on"><a id="Design_Slideshow" href="../xFerToNet.asp?URL=%2E%2E%2Fnet%2FCarousel%2Easpx" title="">Homepage Slideshow</a></li>
+									</ul>
+								</div>
+							</li>
+							<li id="MainNav_Reports" unselectable="on"><span class="MainMenuText">Reports</span>
+								<div class="SubMenuWrapper">
+									<ul>
+										<li class="subnav selected" id="Reports_SubNav_Report" unselectable="on"><a id="Reports_Reporting" href="accounting.asp?table=Orders&amp;Orders_GroupBy1=Orders.Year" title="">Reporting</a></li>
+										<li class="subnav" id="Reports_SubNav_ROI" unselectable="on"><a id="Reports_ROITracking" href="Ad_Campaigns.asp" title="">ROI Tracking</a></li>
+										<li class="subnav" id="Reports_SubNav_AffStats" unselectable="on"><a id="Reports_AffiliateStats" href="TableViewer.asp?table=AffiliateStats" title="">Affiliate Stats</a></li>
+										<li class="subnav" id="Reports_SubNav_Search" unselectable="on"><a id="Reports_SearchTerms" href="TableViewer.asp?table=SearchTerms" title="">Search Terms</a></li>
+									</ul>
+								</div>
+							</li>
+							<li id="MainNav_Settings" unselectable="on"><span class="MainMenuText">Settings</span>
+								<div class="SubMenuWrapper">
+									<ul>
+										<li class="subnav selected" id="Settings_SubNav_Company" unselectable="on"><a id="Settings_Company" href="wizard2.asp?type=company_info" title="">Company</a></li>
+										<li class="subnav" id="Settings_SubNav_Shipping" unselectable="on">
+                                            <a id="Settings_Shipping" href="../xFerToNet.asp?URL=../net/Shipping.aspx" title="">Shipping</a>
+										</li>
+										<li class="subnav" id="Settings_SubNav_Tax" unselectable="on">
+                                             <a id="Settings_Tax" href="../xFerToNet.asp?URL=%2Fnet%2FProviderTax%2Easpx" title="">Tax</a>
+                                           </li>
+										<li class="subnav" id="Settings_SubNav_Payment" unselectable="on"><a id="Settings_Payment" href="wizard2.asp?type=payment" title="">Payment</a></li>
+										<li class="subnav" id="Settings_SubNav_Currency" unselectable="on"><a id="Settings_Currency" href="wizard2.asp?type=currency" title="">Currency</a></li>
+										<li class="subnav" id="Settings_SubNav_IP" unselectable="on"><a id="Settings_IPFirewall" href="TableViewer.asp?table=IP_Address_Security_Rules" title="">IP Firewall</a></li>
+										<li class="subnav" id="Settings_SubNav_Config" unselectable="on"><a id="Settings_ConfigVariables" href="TableViewer.asp?table=configsetup&amp;isDefaultView=True" title="">Config Variables</a></li>
+										<li class="subnav" id="Settings_SubNav_CustomFields" unselectable="on"><a id="Settings_CustomFields" href="TableViewer.asp?table=Custom_Fields&amp;isDefaultView=True" title="">Custom Fields</a></li>
+										<li class="subnav" id="Settings_SubNav_Maintenance" unselectable="on"><a id="Settings_Maintenance" href="Upgrade_Maintenance.asp" title="">Maintenance</a></li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+
+                        <button id="adm_publish_link" class="vp-publish-changes vp-button vp-button-secondary" style="display: none;">
+                            <span class="v13-icon-publish"></span>
+                            Publish
+                        </button>
+
+						
+					</div>
+					
+					<!--<div id="helpWrapper">
+                        <li id="CurrentUser_SubNav_Publish" style="display: none;">
+                            <span class="ToolText">
+								<a href="javascript: void(0);"  onclick="sendAjax('GET', '/admin/publish2.asp', 'ajax=Y', successPublish, throwAjaxError);">Publish</a>
+                            </span>
+                        </li>
+                        
+						<a class="v13-button-help" id="GetHelp" href="javascript:void(0)" onclick="ClearHelpTabs('VolusionInstantHelp', 'Dashboard');">
+                            <span id="GetHelpContainer">
+							    <span class="v13-icon-helpbutton"></span>Get Help
+                            </span>
+                        </a>
+					</div>-->
+					
+				</div><ol id="admin-breadcrumbs" class="breadcrumb" data-bind="if: adm_tab_selected &amp;&amp; adm_subtab_selected"></ol></div>
     
     <!-- page content -->
     <div id="main" class="padding-bottom-0">
       <section class="hero text-center padding-top-l padding-bottom-l">
         <div class="container">
-          <h1> Page Title</h1>
-          <h2 class="h-subhead"> Page subhead in sentence form</h2>
+          <h1>Dashboard</h1>
+          <h2 class="h-subhead">This will be your dashboard. We're displaying sample data until you get your first sale.</h2>
         </div><!-- .container -->
       </section><!-- .hero  -->
 
-       start writing your code...
+      <section class="section-class">
+        <div class="container-fluid">
+          <div id="a65chromeDashboard_left">
+						<div class="v13-dashboard-chartpanel" id="chart_orders">
+							<h2>Orders</h2>
+							<a class="v13-dashboard-shortcutlink" href="/admin/TableViewer.asp?Table=Orders&amp;Orders_Open=Y&amp;IsASearch=Y">View Orders</a>
+							<div class="v13-dashboard-chart">
+								<div class="chartLoadingScreen">
+									<div class="chartLoadingText">Loading...</div>
+								</div>
+								
+				    <div id="report_0" class="dashboardReport"><div class="highcharts-container" id="highcharts-2" style="position: relative; overflow: hidden; width: 758px; height: 230px; text-align: left; line-height: normal; font-family: Arial, Helvetica, sans-serif; font-size: 14px;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="758" height="230"><defs><clipPath id="highcharts-3"><rect rx="0" ry="0" fill="none" x="0" y="0" width="716" height="196" stroke-width="0.000001"></rect></clipPath></defs><rect rx="5" ry="5" fill="#FFFFFF" x="0" y="0" width="758" height="230" stroke-width="0.000001"></rect><g class="highcharts-grid" zIndex="1"></g><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 37 186.5 L 753 186.5" stroke="#C0C0C0" stroke-width="1" zIndex="1"></path><path fill="none" d="M 37 147.5 L 753 147.5" stroke="#C0C0C0" stroke-width="1" zIndex="1"></path><path fill="none" d="M 37 108.5 L 753 108.5" stroke="#C0C0C0" stroke-width="1" zIndex="1"></path><path fill="none" d="M 37 69.5 L 753 69.5" stroke="#C0C0C0" stroke-width="1" zIndex="1"></path><path fill="none" d="M 37 30.5 L 753 30.5" stroke="#C0C0C0" stroke-width="1" zIndex="1"></path><path fill="none" d="M 37 225.5 L 753 225.5" stroke="#C0C0C0" stroke-width="1" zIndex="1"></path></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series" visibility="visible" transform="translate(37,30)" clip-path="url(http://v2223016.zg4m7w74357a.demo47.volusion.com/admin/dashboard.asp#highcharts-3)"><path fill="none" d="M 11.933333333333334 131.8 L 35.8 106.9 L 59.66666666666667 128.7 L 83.53333333333333 103.7 L 107.4 78.8 L 131.26666666666668 53.8 L 155.13333333333333 138.1 L 179 159.9 L 202.86666666666667 134.9 L 226.73333333333335 110 L 250.60000000000002 85 L 274.4666666666667 60.1 L 298.3333333333333 81.9 L 322.2 166.1 L 346.06666666666666 141.2 L 369.93333333333334 116.2 L 393.8 91.3 L 417.6666666666667 113.1 L 441.53333333333336 88.1 L 465.40000000000003 63.2 L 489.2666666666667 147.4 L 513.1333333333333 122.5 L 537 144.3 L 560.8666666666667 119.3 L 584.7333333333332 94.4 L 608.5999999999999 69.4 L 632.4666666666666 44.5 L 656.3333333333333 175.5 L 680.1999999999999 150.5 L 704.0666666666666 125.6" stroke="#7ee3fc" stroke-width="2"></path><path fill="rgb(126,227,252)" d="M 11.933333333333334 131.8 L 35.8 106.9 L 59.66666666666667 128.7 L 83.53333333333333 103.7 L 107.4 78.8 L 131.26666666666668 53.8 L 155.13333333333333 138.1 L 179 159.9 L 202.86666666666667 134.9 L 226.73333333333335 110 L 250.60000000000002 85 L 274.4666666666667 60.1 L 298.3333333333333 81.9 L 322.2 166.1 L 346.06666666666666 141.2 L 369.93333333333334 116.2 L 393.8 91.3 L 417.6666666666667 113.1 L 441.53333333333336 88.1 L 465.40000000000003 63.2 L 489.2666666666667 147.4 L 513.1333333333333 122.5 L 537 144.3 L 560.8666666666667 119.3 L 584.7333333333332 94.4 L 608.5999999999999 69.4 L 632.4666666666666 44.5 L 656.3333333333333 175.5 L 680.1999999999999 150.5 L 704.0666666666666 125.6 L 704.0666666666666 195 L 11.933333333333334 195" fill-opacity="0.1"></path><path fill="#7ee3fc" d="M 704.0666666666666 121.6 C 709.3946666666666 121.6 709.3946666666666 129.6 704.0666666666666 129.6 C 698.7386666666666 129.6 698.7386666666666 121.6 704.0666666666666 121.6 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 680.1999999999999 146.5 C 685.5279999999999 146.5 685.5279999999999 154.5 680.1999999999999 154.5 C 674.872 154.5 674.872 146.5 680.1999999999999 146.5 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 656.3333333333333 171.5 C 661.6613333333332 171.5 661.6613333333332 179.5 656.3333333333333 179.5 C 651.0053333333333 179.5 651.0053333333333 171.5 656.3333333333333 171.5 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 632.4666666666666 40.5 C 637.7946666666666 40.5 637.7946666666666 48.5 632.4666666666666 48.5 C 627.1386666666666 48.5 627.1386666666666 40.5 632.4666666666666 40.5 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 608.5999999999999 65.4 C 613.9279999999999 65.4 613.9279999999999 73.4 608.5999999999999 73.4 C 603.2719999999999 73.4 603.2719999999999 65.4 608.5999999999999 65.4 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 584.7333333333332 90.4 C 590.0613333333332 90.4 590.0613333333332 98.4 584.7333333333332 98.4 C 579.4053333333333 98.4 579.4053333333333 90.4 584.7333333333332 90.4 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 560.8666666666667 115.3 C 566.1946666666666 115.3 566.1946666666666 123.3 560.8666666666667 123.3 C 555.5386666666667 123.3 555.5386666666667 115.3 560.8666666666667 115.3 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 537 140.3 C 542.328 140.3 542.328 148.3 537 148.3 C 531.672 148.3 531.672 140.3 537 140.3 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 513.1333333333333 118.5 C 518.4613333333333 118.5 518.4613333333333 126.5 513.1333333333333 126.5 C 507.80533333333335 126.5 507.80533333333335 118.5 513.1333333333333 118.5 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 489.2666666666667 143.4 C 494.5946666666667 143.4 494.5946666666667 151.4 489.2666666666667 151.4 C 483.93866666666673 151.4 483.93866666666673 143.4 489.2666666666667 143.4 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 465.40000000000003 59.2 C 470.728 59.2 470.728 67.2 465.40000000000003 67.2 C 460.07200000000006 67.2 460.07200000000006 59.2 465.40000000000003 59.2 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 441.53333333333336 84.1 C 446.86133333333333 84.1 446.86133333333333 92.1 441.53333333333336 92.1 C 436.2053333333334 92.1 436.2053333333334 84.1 441.53333333333336 84.1 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 417.6666666666667 109.1 C 422.99466666666666 109.1 422.99466666666666 117.1 417.6666666666667 117.1 C 412.3386666666667 117.1 412.3386666666667 109.1 417.6666666666667 109.1 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 393.8 87.3 C 399.128 87.3 399.128 95.3 393.8 95.3 C 388.47200000000004 95.3 388.47200000000004 87.3 393.8 87.3 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 369.93333333333334 112.2 C 375.2613333333333 112.2 375.2613333333333 120.2 369.93333333333334 120.2 C 364.60533333333336 120.2 364.60533333333336 112.2 369.93333333333334 112.2 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 346.06666666666666 137.2 C 351.39466666666664 137.2 351.39466666666664 145.2 346.06666666666666 145.2 C 340.7386666666667 145.2 340.7386666666667 137.2 346.06666666666666 137.2 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 322.2 162.1 C 327.52799999999996 162.1 327.52799999999996 170.1 322.2 170.1 C 316.872 170.1 316.872 162.1 322.2 162.1 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 298.3333333333333 77.9 C 303.6613333333333 77.9 303.6613333333333 85.9 298.3333333333333 85.9 C 293.00533333333334 85.9 293.00533333333334 77.9 298.3333333333333 77.9 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 274.4666666666667 56.1 C 279.79466666666667 56.1 279.79466666666667 64.1 274.4666666666667 64.1 C 269.1386666666667 64.1 269.1386666666667 56.1 274.4666666666667 56.1 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 250.60000000000002 81 C 255.92800000000003 81 255.92800000000003 89 250.60000000000002 89 C 245.27200000000002 89 245.27200000000002 81 250.60000000000002 81 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 226.73333333333335 106 C 232.06133333333335 106 232.06133333333335 114 226.73333333333335 114 C 221.40533333333335 114 221.40533333333335 106 226.73333333333335 106 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 202.86666666666667 130.9 C 208.19466666666668 130.9 208.19466666666668 138.9 202.86666666666667 138.9 C 197.53866666666667 138.9 197.53866666666667 130.9 202.86666666666667 130.9 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 179 155.9 C 184.328 155.9 184.328 163.9 179 163.9 C 173.672 163.9 173.672 155.9 179 155.9 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 155.13333333333333 134.1 C 160.46133333333333 134.1 160.46133333333333 142.1 155.13333333333333 142.1 C 149.80533333333332 142.1 149.80533333333332 134.1 155.13333333333333 134.1 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 131.26666666666668 49.8 C 136.59466666666668 49.8 136.59466666666668 57.8 131.26666666666668 57.8 C 125.93866666666668 57.8 125.93866666666668 49.8 131.26666666666668 49.8 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 107.4 74.8 C 112.72800000000001 74.8 112.72800000000001 82.8 107.4 82.8 C 102.072 82.8 102.072 74.8 107.4 74.8 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 83.53333333333333 99.7 C 88.86133333333333 99.7 88.86133333333333 107.7 83.53333333333333 107.7 C 78.20533333333333 107.7 78.20533333333333 99.7 83.53333333333333 99.7 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 59.66666666666667 124.69999999999999 C 64.99466666666667 124.69999999999999 64.99466666666667 132.7 59.66666666666667 132.7 C 54.33866666666667 132.7 54.33866666666667 124.69999999999999 59.66666666666667 124.69999999999999 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 35.8 102.9 C 41.128 102.9 41.128 110.9 35.8 110.9 C 30.471999999999998 110.9 30.471999999999998 102.9 35.8 102.9 Z" stroke="#ffffff" stroke-width="1"></path><path fill="#7ee3fc" d="M 11.933333333333334 127.80000000000001 C 17.261333333333333 127.80000000000001 17.261333333333333 135.8 11.933333333333334 135.8 C 6.605333333333333 135.8 6.605333333333333 127.80000000000001 11.933333333333334 127.80000000000001 Z" stroke="#ffffff" stroke-width="1"></path></g></g><text x="379" y="25" style="font-family:Arial, Helvetica, sans-serif;font-size:16px;color:#666666;fill:#666666;" text-anchor="middle" class="highcharts-title" zIndex="4"><tspan x="379">April 28 - May 27</tspan></text><g class="highcharts-axis" zIndex="7"></g><g class="highcharts-axis" zIndex="7"><text x="29" y="225" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;width:338px;color:#666666;line-height:14px;fill:#666666;" text-anchor="end" visibility="visible"><tspan x="29">$0</tspan></text><text x="29" y="186" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;width:338px;color:#666666;line-height:14px;fill:#666666;" text-anchor="end" visibility="visible"><tspan x="29">$50</tspan></text><text x="29" y="147" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;width:338px;color:#666666;line-height:14px;fill:#666666;" text-anchor="end" visibility="visible"><tspan x="29">$100</tspan></text><text x="29" y="108" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;width:338px;color:#666666;line-height:14px;fill:#666666;" text-anchor="end" visibility="visible"><tspan x="29">$150</tspan></text><text x="29" y="69" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;width:338px;color:#666666;line-height:14px;fill:#666666;" text-anchor="end" visibility="visible"><tspan x="29">$200</tspan></text><text x="29" y="30" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;width:338px;color:#666666;line-height:14px;fill:#666666;" text-anchor="end" visibility="visible"><tspan x="29">$250</tspan></text></g><path fill="none" d="M 37 225.5 L 753 225.5" stroke="#cccccc" stroke-width="1" zIndex="7" visibility="visible"></path><g class="highcharts-tooltip" zIndex="8" style="padding:0;white-space:nowrap;" visibility="hidden"><rect rx="5" ry="5" fill="rgb(255,255,255)" x="0.5" y="0.5" width="50" height="20" stroke-width="1" fill-opacity="0.85"></rect></g><g class="highcharts-tracker" zIndex="9"><g zIndex="1" transform="translate(37,30)" clip-path="url(http://v2223016.zg4m7w74357a.demo47.volusion.com/admin/dashboard.asp#highcharts-3)"><path fill="none" d="M 1.9333333333333336 131.8 L 11.933333333333334 131.8 L 35.8 106.9 L 59.66666666666667 128.7 L 83.53333333333333 103.7 L 107.4 78.8 L 131.26666666666668 53.8 L 155.13333333333333 138.1 L 179 159.9 L 202.86666666666667 134.9 L 226.73333333333335 110 L 250.60000000000002 85 L 274.4666666666667 60.1 L 298.3333333333333 81.9 L 322.2 166.1 L 346.06666666666666 141.2 L 369.93333333333334 116.2 L 393.8 91.3 L 417.6666666666667 113.1 L 441.53333333333336 88.1 L 465.40000000000003 63.2 L 489.2666666666667 147.4 L 513.1333333333333 122.5 L 537 144.3 L 560.8666666666667 119.3 L 584.7333333333332 94.4 L 608.5999999999999 69.4 L 632.4666666666666 44.5 L 656.3333333333333 175.5 L 680.1999999999999 150.5 L 704.0666666666666 125.6 L 714.0666666666666 125.6" isTracker="true" stroke-linejoin="bevel" visibility="visible" stroke-opacity="0.000001" stroke="rgb(192,192,192)" stroke-width="22" style=""></path></g></g></svg><div class="highcharts-tooltip" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><span style="position: absolute; white-space: nowrap; font-family: Arial, Helvetica, sans-serif; font-size: 14px; left: 5px; top: 6px; color: rgb(102, 102, 102);" zindex="1"></span></div></div></div>
+				    <div class="dashboardReportRangeButtons" id="reportButtons_0">
+				        
+				            <a class="7day" href="#" onclick="buildDashboardChart(0, 'report', 'ordersByRevenue', 7, true); return false;">Week</a>
+				            <a class="30day selected" href="#" onclick="buildDashboardChart(0, 'report', 'ordersByRevenue', 30, true); return false;">Month</a>
+				            <a class="90day" href="#" onclick="buildDashboardChart(0, 'report', 'ordersByRevenue', 90, true); return false;">3 Months</a>
+				        
+				    </div>
+				    <script>
+				        $(document).ready(function () {
+				            buildDashboardChart(0, "report", "ordersByRevenue", 30, true);
+				        });
+				    </script>
+				    
+							</div>
+						</div>
+						<div class="v13-dashboard-chartpanel" id="chart_products">
+							<h2>Top 5 Products</h2>
+							<div class="v13-dashboard-chart">
+								<div class="chartLoadingScreen">
+									<div class="chartLoadingText">Loading...</div>
+								</div>
+								
+				    <div id="report_1" class="dashboardReport"><div class="highcharts-container" id="highcharts-8" style="position: relative; overflow: hidden; width: 323px; height: 200px; text-align: left; line-height: normal; font-family: Arial, Helvetica, sans-serif; font-size: 14px;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="323" height="200"><defs><clipPath id="highcharts-9"><rect rx="0" ry="0" fill="none" x="0" y="0" width="9999" height="200" stroke-width="0.000001"></rect></clipPath></defs><rect rx="5" ry="5" fill="#FFFFFF" x="0" y="0" width="323" height="200" stroke-width="0.000001"></rect><g class="highcharts-series-group" zIndex="3"></g><g class="highcharts-point" zIndex="5" transform="translate(0,6)"><path fill="#f26e30" d="M 83.98716858816721 31.50000130670739 A 63 63 0 0 1 138.54698900043596 126.02183356003135 L 84 94.5 A 0 0 0 0 0 84 94.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round"></path><path fill="rgb(192,192,192)" d="M 83.98716858816721 31.50000130670739 A 63 63 0 0 1 138.54698900043596 126.02183356003135 L 84 94.5 A 0 0 0 0 0 84 94.5 Z" isTracker="1464378606581" fill-opacity="0.000001" visibility="visible" style="cursor:pointer;"></path></g><g class="highcharts-point" zIndex="5" transform="translate(0,6)"><path fill="#7ee3fc" d="M 138.5469574785751 126.02188810700459 A 63 63 0 0 1 46.975434387990354 145.47236056179852 L 84 94.5 A 0 0 0 0 0 84 94.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round"></path><path fill="rgb(192,192,192)" d="M 138.5469574785751 126.02188810700459 A 63 63 0 0 1 46.975434387990354 145.47236056179852 L 84 94.5 A 0 0 0 0 0 84 94.5 Z" isTracker="1464378606581" fill-opacity="0.000001" visibility="visible" style="cursor:pointer;"></path></g><g class="highcharts-point" zIndex="5" transform="translate(0,6)"><path fill="#d1ed77" d="M 46.9753834156483 145.47232353720742 A 63 63 0 0 1 24.088251493641287 75.01712570202167 L 84 94.5 A 0 0 0 0 0 84 94.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round"></path><path fill="rgb(192,192,192)" d="M 46.9753834156483 145.47232353720742 A 63 63 0 0 1 24.088251493641287 75.01712570202167 L 84 94.5 A 0 0 0 0 0 84 94.5 Z" isTracker="1464378606581" fill-opacity="0.000001" visibility="visible" style="cursor:pointer;"></path></g><g class="highcharts-point" zIndex="5" transform="translate(0,6)"><path fill="#ff9d80" d="M 24.088270976545544 75.01706579028291 A 63 63 0 0 1 58.403740451727344 36.93411168810594 L 84 94.5 A 0 0 0 0 0 84 94.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round"></path><path fill="rgb(192,192,192)" d="M 24.088270976545544 75.01706579028291 A 63 63 0 0 1 58.403740451727344 36.93411168810594 L 84 94.5 A 0 0 0 0 0 84 94.5 Z" isTracker="1464378606581" fill-opacity="0.000001" visibility="visible" style="cursor:pointer;"></path></g><g class="highcharts-point" zIndex="5" transform="translate(0,6)"><path fill="#cccccc" d="M 58.40379801762846 36.93408609187517 A 63 63 0 0 1 83.97543123638727 31.500004790668008 L 84 94.5 A 0 0 0 0 0 84 94.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round"></path><path fill="rgb(192,192,192)" d="M 58.40379801762846 36.93408609187517 A 63 63 0 0 1 83.97543123638727 31.500004790668008 L 84 94.5 A 0 0 0 0 0 84 94.5 Z" isTracker="1464378606581" fill-opacity="0.000001" visibility="visible" style="cursor:pointer;"></path></g><g class="highcharts-legend" zIndex="7" transform="translate(153,61)"><g zIndex="1" clip-path="url(http://v2223016.zg4m7w74357a.demo47.volusion.com/admin/dashboard.asp#highcharts-9)"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><text x="21" y="15" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;cursor:pointer;color:#3E576F;fill:#3E576F;" text-anchor="start" zIndex="2"><tspan x="21">Sample Product 1</tspan></text><rect rx="2" ry="2" fill="#f26e30" x="0" y="4" width="16" height="12" stroke-width="0.000001" zIndex="3" stroke="#f26e30"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,17)"><text x="21" y="15" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;cursor:pointer;color:#3E576F;fill:#3E576F;" text-anchor="start" zIndex="2"><tspan x="21">Sample Product 2</tspan></text><rect rx="2" ry="2" fill="#7ee3fc" x="0" y="4" width="16" height="12" stroke-width="0.000001" zIndex="3" stroke="#7ee3fc"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,31)"><text x="21" y="15" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;cursor:pointer;color:#3E576F;fill:#3E576F;" text-anchor="start" zIndex="2"><tspan x="21">Sample Product 3</tspan></text><rect rx="2" ry="2" fill="#d1ed77" x="0" y="4" width="16" height="12" stroke-width="0.000001" zIndex="3" stroke="#d1ed77"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,45)"><text x="21" y="15" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;cursor:pointer;color:#3E576F;fill:#3E576F;" text-anchor="start" zIndex="2"><tspan x="21">Sample Product 4</tspan></text><rect rx="2" ry="2" fill="#ff9d80" x="0" y="4" width="16" height="12" stroke-width="0.000001" zIndex="3" stroke="#ff9d80"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,59)"><text x="21" y="15" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:12px;cursor:pointer;color:#3E576F;fill:#3E576F;" text-anchor="start" zIndex="2"><tspan x="21">Sample Product 5</tspan></text><rect rx="2" ry="2" fill="#cccccc" x="0" y="4" width="16" height="12" stroke-width="0.000001" zIndex="3" stroke="#cccccc"></rect></g></g></g></g><g class="highcharts-tooltip" zIndex="8" style="padding:0;white-space:nowrap;" visibility="hidden"><rect rx="5" ry="5" fill="rgb(255,255,255)" x="0.5" y="0.5" width="50" height="20" stroke-width="1" fill-opacity="0.85"></rect></g><g class="highcharts-tracker" zIndex="9"></g></svg><div class="highcharts-tooltip" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><span style="position: absolute; white-space: nowrap; font-family: Arial, Helvetica, sans-serif; font-size: 14px; left: 5px; top: 6px; color: rgb(102, 102, 102);" zindex="1"></span></div></div></div>
+				    <div class="dashboardReportRangeButtons" id="reportButtons_1">
+				        
+				            <a class="1day" href="#" onclick="buildDashboardChart(1, 'report', 'productsByRevenue', 1, true); return false;">Day</a>
+				            <a class="7day selected" href="#" onclick="buildDashboardChart(1, 'report', 'productsByRevenue', 7, true); return false;">Week</a>
+				            <a class="30day" href="#" onclick="buildDashboardChart(1, 'report', 'productsByRevenue', 30, true); return false;">Month</a>
+				        
+				    </div>
+				    <script>
+				        $(document).ready(function () {
+				            buildDashboardChart(1, "report", "productsByRevenue", 7, true);
+				        });
+				    </script>
+				    
+							</div>
+						</div>
+						<div class="v13-dashboard-chartpanel" id="chart_categories">
+							<h2>Top 5 Categories</h2>
+							<div class="v13-dashboard-chart">
+								<div class="chartLoadingScreen">
+									<div class="chartLoadingText">Loading...</div>
+								</div>
+								
+				    <div id="report_2" class="dashboardReport"><div class="highcharts-container" id="highcharts-6" style="position: relative; overflow: hidden; width: 323px; height: 200px; text-align: left; line-height: normal; font-family: Arial, Helvetica, sans-serif; font-size: 14px;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="323" height="200"><defs><clipPath id="highcharts-7"><rect rx="0" ry="0" fill="none" x="0" y="0" width="265" height="186" stroke-width="0.000001"></rect></clipPath></defs><rect rx="5" ry="5" fill="#FFFFFF" x="0" y="0" width="323" height="200" stroke-width="0.000001"></rect><g class="highcharts-grid" zIndex="1"></g><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 53 133.5 L 318 133.5" stroke="#C0C0C0" stroke-width="1" zIndex="1"></path><path fill="none" d="M 53 72.5 L 318 72.5" stroke="#C0C0C0" stroke-width="1" zIndex="1"></path><path fill="none" d="M 53 10.5 L 318 10.5" stroke="#C0C0C0" stroke-width="1" zIndex="1"></path><path fill="none" d="M 53 195.5 L 318 195.5" stroke="#C0C0C0" stroke-width="1" zIndex="1"></path></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series" visibility="visible" transform="translate(53,10)" clip-path="url(http://v2223016.zg4m7w74357a.demo47.volusion.com/admin/dashboard.asp#highcharts-7)"><rect fill="#f26e30" x="6.5" y="61.5" width="39" height="123" stroke-width="1" stroke="#FFFFFF" rx="0" ry="0"></rect><rect fill="#7ee3fc" x="59.5" y="86.5" width="39" height="98" stroke-width="1" stroke="#FFFFFF" rx="0" ry="0"></rect><rect fill="#d1ed77" x="112.5" y="110.5" width="39" height="74" stroke-width="1" stroke="#FFFFFF" rx="0" ry="0"></rect><rect fill="#ff9d80" x="165.5" y="135.5" width="39" height="49" stroke-width="1" stroke="#FFFFFF" rx="0" ry="0"></rect><rect fill="#cccccc" x="218.5" y="160.5" width="39" height="24" stroke-width="1" stroke="#FFFFFF" rx="0" ry="0"></rect></g></g><g class="highcharts-axis" zIndex="7"><path fill="none" d="M 159.5 195 L 159.5 200" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 212.5 195 L 212.5 200" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 265.5 195 L 265.5 200" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 318.5 195 L 318.5 200" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 106.5 195 L 106.5 200" stroke="#C0D0E0" stroke-width="1"></path></g><g class="highcharts-axis" zIndex="7"><text x="45" y="196" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;width:113px;color:#666666;line-height:14px;fill:#666666;" text-anchor="end" visibility="visible"><tspan x="45">0</tspan></text><text x="45" y="134.33333333333331" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;width:113px;color:#666666;line-height:14px;fill:#666666;" text-anchor="end" visibility="visible"><tspan x="45">500</tspan></text><text x="45" y="72.66666666666666" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;width:113px;color:#666666;line-height:14px;fill:#666666;" text-anchor="end" visibility="visible"><tspan x="45">1,000</tspan></text><text x="45" y="11" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;width:113px;color:#666666;line-height:14px;fill:#666666;" text-anchor="end" visibility="visible"><tspan x="45">1,500</tspan></text></g><path fill="none" d="M 53 195.5 L 318 195.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path><path fill="none" d="M 53.5 10 L 53.5 195" stroke="#cccccc" stroke-width="1" zIndex="7" visibility="visible"></path><g class="highcharts-tooltip" zIndex="8" style="padding:0;white-space:nowrap;" visibility="hidden"><rect rx="5" ry="5" fill="rgb(255,255,255)" x="0.5" y="0.5" width="50" height="20" stroke-width="1" fill-opacity="0.85"></rect></g><g class="highcharts-tracker" zIndex="9"><g zIndex="1" transform="translate(53,10)" clip-path="url(http://v2223016.zg4m7w74357a.demo47.volusion.com/admin/dashboard.asp#highcharts-7)"><rect fill="rgb(192,192,192)" x="6.5" y="61.5" width="39" height="123" isTracker="1464378606558" fill-opacity="0.000001" visibility="visible" style=""></rect><rect fill="rgb(192,192,192)" x="59.5" y="86.5" width="39" height="98" isTracker="1464378606558" fill-opacity="0.000001" visibility="visible" style=""></rect><rect fill="rgb(192,192,192)" x="112.5" y="110.5" width="39" height="74" isTracker="1464378606558" fill-opacity="0.000001" visibility="visible" style=""></rect><rect fill="rgb(192,192,192)" x="165.5" y="135.5" width="39" height="49" isTracker="1464378606558" fill-opacity="0.000001" visibility="visible" style=""></rect><rect fill="rgb(192,192,192)" x="218.5" y="160.5" width="39" height="24" isTracker="1464378606558" fill-opacity="0.000001" visibility="visible" style=""></rect></g></g></svg><div class="highcharts-tooltip" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><span style="position: absolute; white-space: nowrap; font-family: Arial, Helvetica, sans-serif; font-size: 14px; left: 5px; top: 6px; color: rgb(102, 102, 102);" zindex="1"></span></div></div></div>
+				    <div class="dashboardReportRangeButtons" id="reportButtons_2">
+				        
+				            <a class="1day" href="#" onclick="buildDashboardChart(2, 'report', 'categoriesByRevenue', 1, true); return false;">Day</a>
+				            <a class="7day selected" href="#" onclick="buildDashboardChart(2, 'report', 'categoriesByRevenue', 7, true); return false;">Week</a>
+				            <a class="30day" href="#" onclick="buildDashboardChart(2, 'report', 'categoriesByRevenue', 30, true); return false;">Month</a>
+				        
+				    </div>
+				    <script>
+				        $(document).ready(function () {
+				            buildDashboardChart(2, "report", "categoriesByRevenue", 7, true);
+				        });
+				    </script>
+				    
+							</div>
+						</div>
+						<div class="v13-dashboard-chartpanel" id="chart_trends">
+							<h2>Trends</h2>
+							<a class="v13-dashboard-shortcutlink" href="/admin/accounting.asp?table=Orders&amp;Orders_GroupBy1=Orders.Year">
+								View Reports</a>
+							<div class="v13-dashboard-chart">
+								<table>
+									
+				    <tbody><tr>
+				    <td class="dashboardTrendHeader dashboardTrendName"></td>
+				    <td class="dashboardTrendHeader dashboardTrendToday"><div>Today</div></td>
+				    <td class="dashboardTrendHeader dashboardTrendYesterday"><div>Yesterday</div></td>
+				    <td class="dashboardTrendHeader dashboardTrendChange"><div>% Change</div></td>
+				    <td class="dashboardTrendHeader dashboardTrendChart"><div>Month Trend</div></td>
+				    </tr>
+				    
+				    <tr>
+				    <td class="dashboardTrendName">
+				        <div>Orders</div>
+				    </td>
+				    <td class="dashboardTrendToday dashboardTrendUp">
+				        <div>$0.00</div>
+				    </td>
+				    <td class="dashboardTrendYesterday">
+				        <div>$0.00</div>
+				    </td>
+				    <td class="dashboardTrendChange ">
+				        <div>0%</div>
+				    </td>
+				    <td class="dashboardTrendChart">
+				        <div id="report_3" class="dashboardTrendChartContainer"><div class="highcharts-container" id="highcharts-10" style="position: relative; overflow: hidden; width: 180px; height: 52px; text-align: left; line-height: normal; font-family: Arial, Helvetica, sans-serif; font-size: 14px;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="180" height="52"><defs><clipPath id="highcharts-11"><rect rx="0" ry="0" fill="none" x="0" y="0" width="180" height="53" stroke-width="0.000001"></rect></clipPath></defs><rect rx="5" ry="5" fill="#FFFFFF" x="0" y="0" width="180" height="52" stroke-width="0.000001"></rect><g class="highcharts-grid" zIndex="1"></g><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 0 0.5 L 180 0.5" stroke="#C0C0C0" stroke-width="1" zIndex="1"></path><path fill="none" d="M 0 52.5 L 180 52.5" stroke="#C0C0C0" stroke-width="1" zIndex="1"></path></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series" visibility="visible" clip-path="url(http://v2223016.zg4m7w74357a.demo47.volusion.com/admin/dashboard.asp#highcharts-11)"><path fill="none" d="M 3 35.2 L 9 28.5 L 15 34.3 L 21 27.7 L 27 21 L 33 14.4 L 39 36.8 L 45 42.6 L 51 36 L 57 29.3 L 63 22.7 L 69 16 L 75 21.8 L 81 44.3 L 87 37.6 L 93 31 L 99 24.3 L 105 30.2 L 111 23.5 L 117 16.8 L 123 39.3 L 129 32.7 L 135 38.5 L 141 31.8 L 147 25.2 L 153 18.5 L 159 11.9 L 165 46.8 L 171 40.1 L 177 33.5" stroke="#7ee3fc" stroke-width="2"></path><path fill="rgb(126,227,252)" d="M 3 35.2 L 9 28.5 L 15 34.3 L 21 27.7 L 27 21 L 33 14.4 L 39 36.8 L 45 42.6 L 51 36 L 57 29.3 L 63 22.7 L 69 16 L 75 21.8 L 81 44.3 L 87 37.6 L 93 31 L 99 24.3 L 105 30.2 L 111 23.5 L 117 16.8 L 123 39.3 L 129 32.7 L 135 38.5 L 141 31.8 L 147 25.2 L 153 18.5 L 159 11.9 L 165 46.8 L 171 40.1 L 177 33.5 L 177 52 L 3 52" fill-opacity="0.25"></path></g></g><g class="highcharts-axis" zIndex="7"><path fill="none" d="M 12.5 52 L 12.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 18.5 52 L 18.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 24.5 52 L 24.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 30.5 52 L 30.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 36.5 52 L 36.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 42.5 52 L 42.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 48.5 52 L 48.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 54.5 52 L 54.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 60.5 52 L 60.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 66.5 52 L 66.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 72.5 52 L 72.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 78.5 52 L 78.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 84.5 52 L 84.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 90.5 52 L 90.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 96.5 52 L 96.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 102.5 52 L 102.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 108.5 52 L 108.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 114.5 52 L 114.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 120.5 52 L 120.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 126.5 52 L 126.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 132.5 52 L 132.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 138.5 52 L 138.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 144.5 52 L 144.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 150.5 52 L 150.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 156.5 52 L 156.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 162.5 52 L 162.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 168.5 52 L 168.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 174.5 52 L 174.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 180.5 52 L 180.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 6.5 52 L 6.5 57" stroke="#C0D0E0" stroke-width="1"></path></g><g class="highcharts-axis" zIndex="7"><text x="-8" y="58.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:11px;width:70px;color:#666;line-height:14px;fill:#666;" text-anchor="end" visibility="visible"><tspan x="-8">0</tspan></text><text x="-8" y="6.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:11px;width:70px;color:#666;line-height:14px;fill:#666;" text-anchor="end" visibility="visible"><tspan x="-8">250</tspan></text></g><path fill="none" d="M 0 52.5 L 180 52.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path><g class="highcharts-tracker" zIndex="9"><g zIndex="1" clip-path="url(http://v2223016.zg4m7w74357a.demo47.volusion.com/admin/dashboard.asp#highcharts-11)"><path fill="none" d="M -7 35.2 L 3 35.2 L 9 28.5 L 15 34.3 L 21 27.7 L 27 21 L 33 14.4 L 39 36.8 L 45 42.6 L 51 36 L 57 29.3 L 63 22.7 L 69 16 L 75 21.8 L 81 44.3 L 87 37.6 L 93 31 L 99 24.3 L 105 30.2 L 111 23.5 L 117 16.8 L 123 39.3 L 129 32.7 L 135 38.5 L 141 31.8 L 147 25.2 L 153 18.5 L 159 11.9 L 165 46.8 L 171 40.1 L 177 33.5 L 187 33.5" isTracker="true" stroke-linejoin="bevel" visibility="visible" stroke-opacity="0.000001" stroke="rgb(192,192,192)" stroke-width="22" style=""></path></g></g></svg></div></div>
+				    <script>
+				        $(document).ready(function () {
+				            buildDashboardChart(3, "trend", "ordersByRevenue", 30, true);
+				        });
+				    </script>
+				    </td>
+				    
+				    </tr><tr>
+				    <td class="dashboardTrendName">
+				        <div>Sales</div>
+				    </td>
+				    <td class="dashboardTrendToday dashboardTrendUp">
+				        <div>0</div>
+				    </td>
+				    <td class="dashboardTrendYesterday">
+				        <div>0</div>
+				    </td>
+				    <td class="dashboardTrendChange ">
+				        <div>0%</div>
+				    </td>
+				    <td class="dashboardTrendChart">
+				        <div id="report_4" class="dashboardTrendChartContainer"><div class="highcharts-container" id="highcharts-14" style="position: relative; overflow: hidden; width: 180px; height: 52px; text-align: left; line-height: normal; font-family: Arial, Helvetica, sans-serif; font-size: 14px;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="180" height="52"><defs><clipPath id="highcharts-15"><rect rx="0" ry="0" fill="none" x="0" y="0" width="180" height="53" stroke-width="0.000001"></rect></clipPath></defs><rect rx="5" ry="5" fill="#FFFFFF" x="0" y="0" width="180" height="52" stroke-width="0.000001"></rect><g class="highcharts-grid" zIndex="1"></g><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 0 0.5 L 180 0.5" stroke="#C0C0C0" stroke-width="1" zIndex="1"></path><path fill="none" d="M 0 52.5 L 180 52.5" stroke="#C0C0C0" stroke-width="1" zIndex="1"></path></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series" visibility="visible" clip-path="url(http://v2223016.zg4m7w74357a.demo47.volusion.com/admin/dashboard.asp#highcharts-15)"><path fill="none" d="M 3 35.2 L 9 28.5 L 15 34.3 L 21 27.7 L 27 21 L 33 14.4 L 39 36.8 L 45 42.6 L 51 36 L 57 29.3 L 63 22.7 L 69 16 L 75 21.8 L 81 44.3 L 87 37.6 L 93 31 L 99 24.3 L 105 30.2 L 111 23.5 L 117 16.8 L 123 39.3 L 129 32.7 L 135 38.5 L 141 31.8 L 147 25.2 L 153 18.5 L 159 11.9 L 165 46.8 L 171 40.1 L 177 33.5" stroke="#7ee3fc" stroke-width="2"></path><path fill="rgb(126,227,252)" d="M 3 35.2 L 9 28.5 L 15 34.3 L 21 27.7 L 27 21 L 33 14.4 L 39 36.8 L 45 42.6 L 51 36 L 57 29.3 L 63 22.7 L 69 16 L 75 21.8 L 81 44.3 L 87 37.6 L 93 31 L 99 24.3 L 105 30.2 L 111 23.5 L 117 16.8 L 123 39.3 L 129 32.7 L 135 38.5 L 141 31.8 L 147 25.2 L 153 18.5 L 159 11.9 L 165 46.8 L 171 40.1 L 177 33.5 L 177 52 L 3 52" fill-opacity="0.25"></path></g></g><g class="highcharts-axis" zIndex="7"><path fill="none" d="M 12.5 52 L 12.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 18.5 52 L 18.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 24.5 52 L 24.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 30.5 52 L 30.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 36.5 52 L 36.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 42.5 52 L 42.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 48.5 52 L 48.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 54.5 52 L 54.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 60.5 52 L 60.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 66.5 52 L 66.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 72.5 52 L 72.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 78.5 52 L 78.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 84.5 52 L 84.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 90.5 52 L 90.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 96.5 52 L 96.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 102.5 52 L 102.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 108.5 52 L 108.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 114.5 52 L 114.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 120.5 52 L 120.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 126.5 52 L 126.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 132.5 52 L 132.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 138.5 52 L 138.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 144.5 52 L 144.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 150.5 52 L 150.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 156.5 52 L 156.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 162.5 52 L 162.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 168.5 52 L 168.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 174.5 52 L 174.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 180.5 52 L 180.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 6.5 52 L 6.5 57" stroke="#C0D0E0" stroke-width="1"></path></g><g class="highcharts-axis" zIndex="7"><text x="-8" y="58.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:11px;width:70px;color:#666;line-height:14px;fill:#666;" text-anchor="end" visibility="visible"><tspan x="-8">0</tspan></text><text x="-8" y="6.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:11px;width:70px;color:#666;line-height:14px;fill:#666;" text-anchor="end" visibility="visible"><tspan x="-8">250</tspan></text></g><path fill="none" d="M 0 52.5 L 180 52.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path><g class="highcharts-tracker" zIndex="9"><g zIndex="1" clip-path="url(http://v2223016.zg4m7w74357a.demo47.volusion.com/admin/dashboard.asp#highcharts-15)"><path fill="none" d="M -7 35.2 L 3 35.2 L 9 28.5 L 15 34.3 L 21 27.7 L 27 21 L 33 14.4 L 39 36.8 L 45 42.6 L 51 36 L 57 29.3 L 63 22.7 L 69 16 L 75 21.8 L 81 44.3 L 87 37.6 L 93 31 L 99 24.3 L 105 30.2 L 111 23.5 L 117 16.8 L 123 39.3 L 129 32.7 L 135 38.5 L 141 31.8 L 147 25.2 L 153 18.5 L 159 11.9 L 165 46.8 L 171 40.1 L 177 33.5 L 187 33.5" isTracker="true" stroke-linejoin="bevel" visibility="visible" stroke-opacity="0.000001" stroke="rgb(192,192,192)" stroke-width="22" style=""></path></g></g></svg></div></div>
+				    <script>
+				        $(document).ready(function () {
+				            buildDashboardChart(4, "trend", "ordersByVolume", 30, true);
+				        });
+				    </script>
+				    </td>
+				    
+				    </tr><tr>
+				    <td class="dashboardTrendName">
+				        <div>Avg. Per Cust.</div>
+				    </td>
+				    <td class="dashboardTrendToday dashboardTrendUp">
+				        <div>$0.00</div>
+				    </td>
+				    <td class="dashboardTrendYesterday">
+				        <div>$0.00</div>
+				    </td>
+				    <td class="dashboardTrendChange ">
+				        <div>0%</div>
+				    </td>
+				    <td class="dashboardTrendChart">
+				        <div id="report_5" class="dashboardTrendChartContainer"><div class="highcharts-container" id="highcharts-12" style="position: relative; overflow: hidden; width: 180px; height: 52px; text-align: left; line-height: normal; font-family: Arial, Helvetica, sans-serif; font-size: 14px;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="180" height="52"><defs><clipPath id="highcharts-13"><rect rx="0" ry="0" fill="none" x="0" y="0" width="180" height="53" stroke-width="0.000001"></rect></clipPath></defs><rect rx="5" ry="5" fill="#FFFFFF" x="0" y="0" width="180" height="52" stroke-width="0.000001"></rect><g class="highcharts-grid" zIndex="1"></g><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 0 0.5 L 180 0.5" stroke="#C0C0C0" stroke-width="1" zIndex="1"></path><path fill="none" d="M 0 52.5 L 180 52.5" stroke="#C0C0C0" stroke-width="1" zIndex="1"></path></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series" visibility="visible" clip-path="url(http://v2223016.zg4m7w74357a.demo47.volusion.com/admin/dashboard.asp#highcharts-13)"><path fill="none" d="M 3 35.2 L 9 28.5 L 15 34.3 L 21 27.7 L 27 21 L 33 14.4 L 39 36.8 L 45 42.6 L 51 36 L 57 29.3 L 63 22.7 L 69 16 L 75 21.8 L 81 44.3 L 87 37.6 L 93 31 L 99 24.3 L 105 30.2 L 111 23.5 L 117 16.8 L 123 39.3 L 129 32.7 L 135 38.5 L 141 31.8 L 147 25.2 L 153 18.5 L 159 11.9 L 165 46.8 L 171 40.1 L 177 33.5" stroke="#7ee3fc" stroke-width="2"></path><path fill="rgb(126,227,252)" d="M 3 35.2 L 9 28.5 L 15 34.3 L 21 27.7 L 27 21 L 33 14.4 L 39 36.8 L 45 42.6 L 51 36 L 57 29.3 L 63 22.7 L 69 16 L 75 21.8 L 81 44.3 L 87 37.6 L 93 31 L 99 24.3 L 105 30.2 L 111 23.5 L 117 16.8 L 123 39.3 L 129 32.7 L 135 38.5 L 141 31.8 L 147 25.2 L 153 18.5 L 159 11.9 L 165 46.8 L 171 40.1 L 177 33.5 L 177 52 L 3 52" fill-opacity="0.25"></path></g></g><g class="highcharts-axis" zIndex="7"><path fill="none" d="M 12.5 52 L 12.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 18.5 52 L 18.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 24.5 52 L 24.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 30.5 52 L 30.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 36.5 52 L 36.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 42.5 52 L 42.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 48.5 52 L 48.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 54.5 52 L 54.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 60.5 52 L 60.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 66.5 52 L 66.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 72.5 52 L 72.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 78.5 52 L 78.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 84.5 52 L 84.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 90.5 52 L 90.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 96.5 52 L 96.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 102.5 52 L 102.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 108.5 52 L 108.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 114.5 52 L 114.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 120.5 52 L 120.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 126.5 52 L 126.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 132.5 52 L 132.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 138.5 52 L 138.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 144.5 52 L 144.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 150.5 52 L 150.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 156.5 52 L 156.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 162.5 52 L 162.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 168.5 52 L 168.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 174.5 52 L 174.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 180.5 52 L 180.5 57" stroke="#C0D0E0" stroke-width="1"></path><path fill="none" d="M 6.5 52 L 6.5 57" stroke="#C0D0E0" stroke-width="1"></path></g><g class="highcharts-axis" zIndex="7"><text x="-8" y="58.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:11px;width:70px;color:#666;line-height:14px;fill:#666;" text-anchor="end" visibility="visible"><tspan x="-8">0</tspan></text><text x="-8" y="6.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Verdana, Arial, Helvetica, sans-serif;font-size:11px;width:70px;color:#666;line-height:14px;fill:#666;" text-anchor="end" visibility="visible"><tspan x="-8">250</tspan></text></g><path fill="none" d="M 0 52.5 L 180 52.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path><g class="highcharts-tracker" zIndex="9"><g zIndex="1" clip-path="url(http://v2223016.zg4m7w74357a.demo47.volusion.com/admin/dashboard.asp#highcharts-13)"><path fill="none" d="M -7 35.2 L 3 35.2 L 9 28.5 L 15 34.3 L 21 27.7 L 27 21 L 33 14.4 L 39 36.8 L 45 42.6 L 51 36 L 57 29.3 L 63 22.7 L 69 16 L 75 21.8 L 81 44.3 L 87 37.6 L 93 31 L 99 24.3 L 105 30.2 L 111 23.5 L 117 16.8 L 123 39.3 L 129 32.7 L 135 38.5 L 141 31.8 L 147 25.2 L 153 18.5 L 159 11.9 L 165 46.8 L 171 40.1 L 177 33.5 L 187 33.5" isTracker="true" stroke-linejoin="bevel" visibility="visible" stroke-opacity="0.000001" stroke="rgb(192,192,192)" stroke-width="22" style=""></path></g></g></svg></div></div>
+				    <script>
+				        $(document).ready(function () {
+				            buildDashboardChart(5, "trend", "ordersByRevenuePerCustomer", 30, true);
+				        });
+				    </script>
+				    </td>
+				    
+								</tr></tbody></table>
+							</div>
+							<div class="chartLoadingScreen">
+								<div class="chartLoadingText">Loading...</div>
+							</div>
+						</div>
+						
+					</div>
+        </div><!-- .container -->
+      </section><!-- .section-class -->		
+
 
     </div><!-- #main -->
 
