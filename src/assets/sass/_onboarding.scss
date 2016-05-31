@@ -89,7 +89,7 @@
 	ul{
 		margin-top: 50px;
 		li{
-			padding: 15px 20px;
+			padding: 15px 12px;
 			border-bottom: 1px solid lightgray;
 			transition: all .1s ease-in;
 
@@ -107,8 +107,8 @@
 				border: none;
 				border-radius: 50%;
 				padding: 5px;
-				margin-right: 10px;
-				display: inline-block;
+				margin-right: 12px;
+				display: none;
 				position: relative;
 
 				.check{
@@ -128,6 +128,10 @@
 				color: white;
 			}
 			&[checked]{
+				.check-box{
+					display: inline-block;
+				}
+				
 				.done-msg{
 					display: inline-block;
 				}
