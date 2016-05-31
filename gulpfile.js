@@ -62,7 +62,9 @@ gulp.task('scripts', function(){
     './node_modules/jquery/dist/jquery.min.js',
     './node_modules/vbox/js/hammer.min.js',
     './node_modules/vbox/js/jquery.hammer.js',
+    './node_modules/vbox/js/velocity.min.js',
     './node_modules/vbox/js/sideNav.js',
+    './node_modules/vbox/js/leanModal.js',
     './src/assets/js/tour.js'
   ];
 
