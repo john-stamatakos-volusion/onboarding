@@ -436,7 +436,80 @@
       </section><!-- .section-class -->		
 
 
+    <div id='help-nav' class='card'>
+      <div class='close right'>
+        <i class="fa fa-times"></i>
+      </div>
+      <ul>
+        <li><span class="check-box"></span>Add a product</li>
+        <li><span class="check-box"></span>Add your logo</li>
+        <li><span class="check-box"></span>Add store info</li>
+        <li><span class="check-box"></span>Sell on social</li>
+        <li><span class="check-box"></span>Bookmark your store</li>
+        <li><span class="check-box"></span>Select a plan</li>
+      </ul>
+    </div>
+
+    <div class="help-launcher-button">
+    </div>
+
+    <div class="intercom-launcher-button">
+    </div>
+
     </div><!-- #main -->
 
+    <script src="/assets/js/all.js"></script>
+    <script type="text/javascript">
+      (function(){
+        $(".button-collapse").sideNav();
+
+        $('.help-launcher-button').click(function(){
+          $('#help-nav').toggleClass('active');
+        })
+        $('#help-nav .close').click(function(){
+          $('#help-nav').toggleClass('active');
+        });
+
+        $('#help-nav li').click(function(){
+          $('#help-nav li').removeClass('active');
+          $(this).addClass('active');
+
+          if($(this).attr('checked')) return;
+
+          $(this).children('.check-box').append('<i class="fa fa-check check"></i>');
+          $(this).attr('checked', true);
+        });
+
+        startIntro();
+
+        //////////////////
+        ///
+        function startIntro(){
+          var currStep = 1;
+
+          var intro = introJs()
+            .setOption('tooltipPosition', 'auto')
+            .setOption('showBullets', false)
+            .setOption('showStepNumbers', false);
+
+          intro.onbeforechange(function(a){
+            if(currStep === 2){
+              $('#help-nav').toggleClass('active');
+            }
+            currStep++;
+          });
+
+          intro.setOptions({
+            steps: [
+              {
+                element: document.querySelector('.help-launcher-button'),
+                intro: "Not sure where to begin? We have a few tasks you can complete to help get you on your way."
+              }
+            ]
+          });
+          intro.start();
+      }
+      })();
+    </script>
 </body>
 </html>

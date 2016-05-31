@@ -39,3 +39,90 @@
 		}
 	}
 }
+
+.intercom-launcher-button, .help-launcher-button{
+	background-size: 26px 25px;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  background-position: 50%;
+  background-color: #0074b0;
+  border: 1px solid #004c88;
+  z-index: 1000;
+}
+
+.intercom-launcher-button{
+	background-image: url(https://js.intercomcdn.com/images/icon-launcher-acquire@2x.8a739dbd.png);
+  bottom: 20px;
+	right: 30px;
+}
+
+.help-launcher-button{
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Question_mark_white_icon.svg/2000px-Question_mark_white_icon.svg.png');
+  bottom: 20px;
+  right: 90px;
+}
+
+#help-nav{
+	height: 100vh;
+	width: 300px;
+	position: fixed;
+	right: -300px;
+	top: 60px;
+	background-color: white;
+	z-index: 90;
+
+	transition: all .4s ease-in;
+
+	.close{
+		font-size: 20px;
+		padding: 10px 15px;
+
+		&:hover{
+			cursor: pointer;
+		}
+	}
+
+	ul{
+		margin-top: 50px;
+		li{
+			padding: 15px 20px;
+			border-bottom: 1px solid lightgray;
+			transition: all .1s ease-in;
+
+			.check-box{
+				width: 10px;
+				height: 10px;
+				border: 1px solid gray;
+				border-radius: 50%;
+				padding: 5px;
+				margin-right: 10px;
+				display: inline-block;
+				position: relative;
+
+				.check{
+					color: green;
+					position: absolute;
+					top: -10px;
+					left: -4px;
+					font-size: 23px;
+				}
+			}
+			&:hover{
+				background-color: lightgray;
+				cursor: pointer;
+			}
+			&.active{
+				background-color: #ff7e47;
+				color: white;
+			}
+		}
+	}
+
+	&.active{
+		right: 0;
+	}
+}
