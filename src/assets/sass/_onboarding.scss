@@ -68,9 +68,9 @@
 
 #help-nav{
 	height: 100vh;
-	width: 300px;
+	width: 360px;
 	position: fixed;
-	right: -300px;
+	right: -360px;
 	top: 60px;
 	background-color: white;
 	z-index: 90;
@@ -92,6 +92,14 @@
 			padding: 15px 20px;
 			border-bottom: 1px solid lightgray;
 			transition: all .1s ease-in;
+
+			.todo-msg{
+				display: inline-block;
+			}
+
+			.done-msg{
+				display: none;
+			}
 
 			.check-box{
 				width: 10px;
@@ -118,6 +126,15 @@
 			&.active{
 				background-color: #ff7e47;
 				color: white;
+			}
+			&[checked]{
+				.done-msg{
+					display: inline-block;
+				}
+
+				.todo-msg{
+					display: none;
+				}
 			}
 		}
 	}
