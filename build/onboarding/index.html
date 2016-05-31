@@ -438,7 +438,7 @@
 
     <div id='help-nav' class='card'>
       <div class='close right'>
-        <i class="fa fa-times"></i>
+        <i class="material-icons">close</i>
       </div>
       <ul>
         <li>
@@ -477,6 +477,7 @@
     </div>
 
     <div class="help-launcher-button">
+    	<i class="material-icons">playlist_add_check</i>
     </div>
 
     <div class="intercom-launcher-button">
@@ -488,12 +489,14 @@
     <script type="text/javascript">
       (function(){
 
+      	if(!getParameterByName('intro'))	startIntro();
+
       	initHelpNav();
-        startIntro();
 
         //////////////////
         
         function initHelpNav(){
+
         	$(".button-collapse").sideNav();
 
 	        $('.help-launcher-button').click(function(){
@@ -510,7 +513,7 @@
 
 	          if($(this).attr('checked')) return;
 
-	          $(this).children('.check-box').append('<i class="fa fa-check check"></i>');
+	          $(this).children('.check-box').append('<i class="material-icons">check</i>');
 	          $(this).attr('checked', true);
 	        });
         }
@@ -524,14 +527,19 @@
             .setOption('showStepNumbers', false);
 
           intro.onbeforechange(function(a){
-            if(currStep === 2){
-              $('#help-nav').toggleClass('active');
-            }
             currStep++;
           });
 
           intro.setOptions({
             steps: [
+            	{
+                element: document.querySelector('#chart_orders'),
+                intro: "View your order history."
+              },
+              {
+                element: document.querySelector('.storefront-toggle'),
+                intro: "View your store at any time."
+              },
               {
                 element: document.querySelector('.help-launcher-button'),
                 intro: "Not sure where to begin? We have a few tasks you can complete to help get you on your way."
@@ -541,34 +549,17 @@
           intro.start();
       	}
 
+      	function getParameterByName(name, url) {
+			    if (!url) url = window.location.href;
+			    name = name.replace(/[\[\]]/g, "\\$&");
+			    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+			        results = regex.exec(url);
+			    if (!results) return null;
+			    if (!results[2]) return '';
+			    return decodeURIComponent(results[2].replace(/\+/g, " "));
+				}
       	
       })();
-
-      var prodIntroStep = 0;
-
-      function startAddProductIntro(){
-      	prodIntroStep++;
-
-      	var productIntro = introJs()
-          .setOption('tooltipPosition', 'auto')
-          .setOption('showBullets', false)
-          .setOption('showStepNumbers', false);
-
-        productIntro.setOptions({
-          steps: [
-            {
-              element: document.querySelector('#MainNav_Inventory'),
-              intro: ""
-            },
-            {
-              element: document.querySelector('#Inventory_SubNav_Products'),
-              intro: ""
-            }
-          ]
-        });
-        productIntro.start();
-    		
-    	}
     </script>
 </body>
 </html>
