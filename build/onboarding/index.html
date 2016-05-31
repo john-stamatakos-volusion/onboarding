@@ -463,6 +463,11 @@
         </li>
         <li>
         	<span class="check-box"></span>
+        	<span class="todo-msg">Bookmark your store</span>
+        	<span class="done-msg">Your store is bookmarked<span>
+        </li>
+        <li>
+        	<span class="check-box"></span>
         	<span class="todo-msg">Select a plan</span>
         	<span class="done-msg">You selected a plan<span>
       	</li>
@@ -480,29 +485,34 @@
     <script src="/assets/js/all.js"></script>
     <script type="text/javascript">
       (function(){
-        $(".button-collapse").sideNav();
 
-        $('.help-launcher-button').click(function(){
-          $('#help-nav').toggleClass('active');
-        })
-        $('#help-nav .close').click(function(){
-          $('#help-nav').toggleClass('active');
-        });
-
-        $('#help-nav li').click(function(){
-          $('#help-nav li').removeClass('active');
-          $(this).addClass('active');
-
-          if($(this).attr('checked')) return;
-
-          $(this).children('.check-box').append('<i class="fa fa-check check"></i>');
-          $(this).attr('checked', true);
-        });
-
+      	initHelpNav();
         startIntro();
 
         //////////////////
-        ///
+        
+        function initHelpNav(){
+        	$(".button-collapse").sideNav();
+
+	        $('.help-launcher-button').click(function(){
+	          $('#help-nav').toggleClass('active');
+	        });
+
+	        $('#help-nav .close').click(function(){
+	          $('#help-nav').toggleClass('active');
+	        });
+
+	        $('#help-nav li').click(function(){
+	          $('#help-nav li').removeClass('active');
+	          $(this).addClass('active');
+
+	          if($(this).attr('checked')) return;
+
+	          $(this).children('.check-box').append('<i class="fa fa-check check"></i>');
+	          $(this).attr('checked', true);
+	        });
+        }
+
         function startIntro(){
           var currStep = 1;
 
@@ -527,8 +537,36 @@
             ]
           });
           intro.start();
-      }
+      	}
+
+      	
       })();
+
+      var prodIntroStep = 0;
+
+      function startAddProductIntro(){
+      	prodIntroStep++;
+
+      	var productIntro = introJs()
+          .setOption('tooltipPosition', 'auto')
+          .setOption('showBullets', false)
+          .setOption('showStepNumbers', false);
+
+        productIntro.setOptions({
+          steps: [
+            {
+              element: document.querySelector('#MainNav_Inventory'),
+              intro: ""
+            },
+            {
+              element: document.querySelector('#Inventory_SubNav_Products'),
+              intro: ""
+            }
+          ]
+        });
+        productIntro.start();
+    		
+    	}
     </script>
 </body>
 </html>

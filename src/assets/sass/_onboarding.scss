@@ -104,7 +104,7 @@
 			.check-box{
 				width: 10px;
 				height: 10px;
-				border: 1px solid gray;
+				border: none;
 				border-radius: 50%;
 				padding: 5px;
 				margin-right: 10px;
@@ -114,7 +114,7 @@
 				.check{
 					color: green;
 					position: absolute;
-					top: -10px;
+					top: -8px;
 					left: -4px;
 					font-size: 23px;
 				}
