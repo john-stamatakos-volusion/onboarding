@@ -65,7 +65,7 @@ gulp.task('scripts', function(){
     './node_modules/vbox/js/velocity.min.js',
     './node_modules/vbox/js/sideNav.js',
     './node_modules/vbox/js/leanModal.js',
-    './src/assets/js/tour.js'
+    './node_modules/hopscotch/dist/js/hopscotch.js' 
   ];
 
   return gulp.src(src)

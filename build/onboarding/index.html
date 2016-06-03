@@ -441,17 +441,17 @@
         <i class="material-icons">close</i>
       </div>
       <ul>
-      	<li class="modal-trigger" href="#modal1">
+      	<li id="help-intro-video" class="modal-trigger" href="#modal1" onclick="checkOffItem(this)">
         	<span class="check-box"></span>
         	<span class="todo-msg">Watch introduction video</span>
         	<span class="done-msg">You watched the introduction video<span>
       	</li>
-        <li>
+        <li id="help-add-product" onclick="startAddProductTour()">
         	<span class="check-box"></span>
         	<span class="todo-msg">Add a product</span>
         	<span class="done-msg">You added 1 product<span>
       	</li>
-        <li>
+        <li id="help-add-logo" onclick="startAddLogoTour()">
         	<span class="check-box"></span>
         	<span class="todo-msg">Add your logo</span>
         	<span class="done-msg">You added your logo<span>
@@ -479,6 +479,7 @@
         	<span class="done-msg badge">PRO</span>
       	</li>
       </ul>
+      <img class="helper" src="" alt="Helper">
     </div>
 
     <div class="help-launcher-button">
@@ -503,79 +504,140 @@
     <script type="text/javascript">
       (function(){
 
-      	if(!getParameterByName('intro'))	startIntro();
-
       	initHelpNav();
-      	
+      	startIntroTour();
+
   	    $('.modal-trigger').leanModal();
-
-        //////////////////
-        
-        function initHelpNav(){
-
-        	$(".button-collapse").sideNav();
-
-	        $('.help-launcher-button').click(function(){
-	          $('#help-nav').toggleClass('active');
-	        });
-
-	        $('#help-nav .close').click(function(){
-	          $('#help-nav').toggleClass('active');
-	        });
-
-	        $('#help-nav li').click(function(){
-	          $('#help-nav li').removeClass('active');
-	          $(this).addClass('active');
-
-	          if($(this).attr('checked')) return;
-
-	          $(this).children('.check-box').append('<i class="material-icons">check</i>');
-	          $(this).attr('checked', true);
-	        });
-        }
-
-        function startIntro(){
-          var currStep = 1;
-
-          var intro = introJs()
-            .setOption('tooltipPosition', 'auto')
-            .setOption('showBullets', false)
-            .setOption('showStepNumbers', false);
-
-          intro.onbeforechange(function(a){
-            currStep++;
-          });
-
-          intro.setOptions({
-            steps: [
-            	{
-                element: document.querySelector('#chart_orders'),
-                intro: "View your order history."
-              },
-              {
-                element: document.querySelector('.storefront-toggle'),
-                intro: "View your store at any time."
-              },
-              {
-                element: document.querySelector('.help-launcher-button'),
-                intro: "Not sure where to begin? We have a few tasks you can complete to help get you on your way."
-              }
-            ]
-          });
-          intro.start();
-      	}
-
-      	function getParameterByName(name, url) {
-			    if (!url) url = window.location.href;
-			    name = name.replace(/[\[\]]/g, "\\$&");
-			    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-			        results = regex.exec(url);
-			    if (!results) return null;
-			    if (!results[2]) return '';
-			    return decodeURIComponent(results[2].replace(/\+/g, " "));
-				}
-      	
       })();
+      //////////////////
+      
+      function initHelpNav(){
+
+        $('.help-launcher-button').click(function(){
+        	$('#help-nav .helper').attr("src", "");
+        	$('#help-nav .helper').attr("src", "https://d13yacurqjgara.cloudfront.net/users/291221/screenshots/1425333/helper.gif");
+          $('#help-nav').toggleClass('active');
+        });
+
+        $('#help-nav .close').click(function(){
+          $('#help-nav').toggleClass('active');
+        });
+
+        $('#help-nav li').click(function(){
+          $('#help-nav li').removeClass('active');
+          $(this).addClass('active');
+        });
+      }
+
+      function startIntroTour(){
+
+		    var tour = {
+		      id: "welcome",
+		      steps: [
+		        {
+		          title: "View Your Store",
+		          content: "View your online store at any time",
+		          target: document.querySelector('.storefront-toggle'),
+		          placement: "bottom",
+		          xOffset: -10,
+		          fixedElement: true
+		        },
+		        {
+		          title: "Getting Started Steps",
+		          content: "Not sure where to start? We've got some tasks you can get started on.",
+		          target: document.querySelector('.help-launcher-button'),
+		          placement: "top",
+		          xOffset: -200,
+		          arrowOffset: 200,
+		          fixedElement: true
+		        }
+		      ]
+		    };
+
+		    // Start the tour!
+		    hopscotch.startTour(tour);
+
+    	}
+
+    	function startAddProductTour(){
+    		var tour = {
+		      id: "addProduct",
+		      steps: [
+		        {
+		          title: 'Hover over "Inventory".',
+		          target: document.querySelector('#MainNav_Inventory'),
+		          placement: "bottom",
+		          xOffset: 8,
+		          onNext: function(){
+		          	document.querySelector('#MainNav_Inventory .SubMenuWrapper').style.display = "block";
+		          }
+		        },
+		        {
+		          title: 'Select "Products".',
+		          target: document.querySelector('#Inventory_SubNav_Products'),
+		          placement: "right"
+		        }
+		      ],
+		      onEnd: function(){
+		      	checkOffItem($('#help-add-product'));
+		      	document.querySelector('#MainNav_Inventory .SubMenuWrapper').style.display = "none";
+		      }
+		    };
+
+		    // Start the tour!
+		    hopscotch.startTour(tour);
+    	}
+
+    	function startAddLogoTour(){
+    		var tour = {
+		      id: "addLogo",
+		      steps: [
+		        {
+		          title: 'Hover over "Design".',
+		          target: document.querySelector('#MainNav_Design'),
+		          placement: "bottom",
+		          xOffset: 8,
+		          onNext: function(){
+		          	document.querySelector('#MainNav_Design .SubMenuWrapper').style.display = "block";
+		          }
+		        },
+		        {
+		          title: 'Select "Logos".',
+		          target: document.querySelector('#Design_SubNav_Logos'),
+		          placement: "right"
+		        }
+		      ],
+		      onEnd: function(){
+		      	checkOffItem($('#help-add-logo'));
+		      	document.querySelector('#MainNav_Design .SubMenuWrapper').style.display = "none";
+		      }
+		    };
+
+		    // Start the tour!
+		    hopscotch.startTour(tour);
+    	}
+
+
+    	function checkOffItem(element){
+    		var helpListItem = $(element);
+      	if(helpListItem.attr('checked')) return;
+
+      	helpListItem.children('.check-box').append('<i class="material-icons">check</i>');
+      	helpListItem.attr('checked', true);
+    	}
+
+    	///HELPERS
+
+    	function getParameterByName(name, url) {
+		    if (!url) url = window.location.href;
+		    name = name.replace(/[\[\]]/g, "\\$&");
+		    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		        results = regex.exec(url);
+		    if (!results) return null;
+		    if (!results[2]) return '';
+		    return decodeURIComponent(results[2].replace(/\+/g, " "));
+			}
+ 
     </script>
 </body>
 </html>
