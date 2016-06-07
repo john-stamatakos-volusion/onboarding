@@ -22,8 +22,8 @@ Onboarding.Service = (function(){
 	
 	/**
 	 * Gets all of the Onboarding Event items for the given user.
-	 * @param  {String}   uid      The users/stores unique ID in the Onboarding table.
-	 * @param  {Function} callback Code executed after http request is made. 
+	 * @param  {String}   uid      Unique ID in the Onboarding table.
+	 * @param  {Function} callback Executed after http request is made. Passes in data. 
 	 * @return {N/A}
 	 */
 	function getProgress(uid, callback){
@@ -38,6 +38,13 @@ Onboarding.Service = (function(){
   	xhttp.send();
 	}
 
+	/**
+	 * Gets specific Onboarding Event value for the given user.
+	 * @param  {String}   uid      Unique ID in the Onboarding table.
+	 * @param  {String}   key      Name of Event to look for in the table. 
+	 * @param  {Function} callback Executed after http request. Passes in the data.
+	 * @return {[type]}            
+	 */
 	function getValue(uid, key, callback){
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function(){
@@ -50,6 +57,13 @@ Onboarding.Service = (function(){
   	xhttp.send();
 	}
 
+	/**
+	 * Sets specific Onboarding Event for the given user.
+	 * @param {String}   uid      Unique ID in the Onboarding table.
+	 * @param {String}   key      Name of the Onboarding Event.
+	 * @param {Dyamic}   value    Value to set for the Event.
+	 * @param {Function} callback [description]
+	 */
 	function setValue(uid, key, value, callback){
 		var data = {
 			"customerID": uid,
