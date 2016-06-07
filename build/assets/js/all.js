@@ -3368,7 +3368,10 @@ Onboarding.Tour = (function(){
           target: document.querySelector('.storefront-toggle'),
           placement: "bottom",
           xOffset: -10,
-          fixedElement: true
+          fixedElement: true,
+          showCTAButton: true,
+          ctaLabel: "Don't show me this again",
+          onCTA: disableIntroTour
         },
         {
           title: "Getting Started Steps",
@@ -3385,6 +3388,11 @@ Onboarding.Tour = (function(){
     // Start the tour!
     hopscotch.startTour(tour);
 	}
+
+  function disableIntroTour() {
+    Onboarding.Helpers.setCookie('introTourDisabled', true, 30);
+    hopscotch.endTour([true]);
+  }
 
 	function startAddProductTour(){
 		var tour = {

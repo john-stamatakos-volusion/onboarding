@@ -80,6 +80,23 @@
   }
 }
 
+.tour-welcome .hopscotch-cta {
+  border: none!important;
+  background-image: none!important;
+  background-color: white!important;
+  color: black!important;
+  text-shadow: none!important;
+  font-weight:300!important;
+  text-decoration:underline!important;
+
+
+
+  &:hover{
+    box-shadow: none!important;
+    opacity:0.6;
+  }
+}
+
 #modal1{
 	i{
 		background-color: gray;
