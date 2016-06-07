@@ -65,7 +65,13 @@ gulp.task('scripts', function(){
     './node_modules/vbox/js/velocity.min.js',
     './node_modules/vbox/js/sideNav.js',
     './node_modules/vbox/js/leanModal.js',
-    './node_modules/hopscotch/dist/js/hopscotch.js' 
+    './node_modules/hopscotch/dist/js/hopscotch.js',
+    
+    './src/assets/js/onboarding.js',
+    './src/assets/js/onboarding.helpers.js',
+    './src/assets/js/onboarding.service.js',
+    './src/assets/js/onboarding.nav.js',
+    './src/assets/js/onboarding.tour.js'
   ];
 
   return gulp.src(src)
