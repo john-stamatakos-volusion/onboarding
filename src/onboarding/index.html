@@ -523,7 +523,10 @@
       		customerID: storeID
       	});
 
-      	Onboarding.Tour.startIntroTour(); 
+      	if(!Onboarding.Helpers.getCookie('introTourDisabled')){
+      		Onboarding.Tour.startIntroTour(); 
+      	}
+
 
   	    $('.modal-trigger').leanModal();
   	    

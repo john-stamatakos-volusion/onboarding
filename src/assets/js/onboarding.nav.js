@@ -43,6 +43,11 @@ Onboarding.Nav = (function(){
 
 	}
 
+	/**
+	 * Checks off an item in the side nav, also able to save the check to Onboarding database table.
+	 * @param  {Object} element  DOM element to check off.
+	 * @param  {[type]} save     Save to database?
+	 */
 	function checkoffItem(element, save){
 		var helpListItem = $(element);
 		if(helpListItem.attr('checked')) return;
@@ -58,6 +63,9 @@ Onboarding.Nav = (function(){
 
 	}
 
+	/**
+	 * Private function to load users current Onboarding Events progress in nav.
+	 */
 	function _setProgress(){
 	  /* get the users current progress in onboarding */
   	Onboarding.Service.getProgress(_customerID, function(data){
