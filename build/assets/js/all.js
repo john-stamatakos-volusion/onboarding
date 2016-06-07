@@ -3126,3 +3126,321 @@ return __p
   return winHopscotch;
 
 })));
+/**
+ * @author Mario Harper
+ * @description Global items for onboarding process stored here.
+ */
+'use strict';
+
+var Onboarding = (function(){
+
+	var onboarding = {
+		init: init
+	}
+
+	return onboarding;
+
+	//////////////////////
+
+	function init(params){
+		Onboarding.Nav.init({customerID: params.customerID});
+	}
+
+})();
+/**
+ * @author Mario Harper
+ * @description Helper methods used in the onboarding module.
+ */
+'use strict'
+
+var Onboarding = Onboarding || {};
+
+Onboarding.Helpers = (function(){
+
+  var helpers = {
+    setCookie: setCookie,
+    getCookie: getCookie
+  }
+
+  return helpers;
+
+  ///////////////////  
+
+  function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+  }
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length,c.length);
+        }
+    }
+    return "";
+  }
+})();
+
+/**
+ * @author Mario Harper
+ * @description Custom service used to talk to the onboarding database.
+ */
+'use strict';
+
+var Onboarding = Onboarding || {};
+
+Onboarding.Service = (function(){
+	
+	var API_BASE = 'https://dcqqifyaug.execute-api.us-west-2.amazonaws.com/prod/progress';
+
+	var service = {
+		getProgress: getProgress,
+		getValue: getValue,
+		setValue: setValue
+	};
+
+	return service;
+
+	/////////////////////////
+	
+	/**
+	 * Gets all of the Onboarding Event items for the given user.
+	 * @param  {String}   uid      The users/stores unique ID in the Onboarding table.
+	 * @param  {Function} callback Code executed after http request is made. 
+	 * @return {N/A}
+	 */
+	function getProgress(uid, callback){
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function(){
+			if (xhttp.readyState == 4 && xhttp.status == 200) {
+	      callback(JSON.parse(xhttp.responseText));
+	    }
+		}
+
+		xhttp.open("GET", API_BASE+"?customerID="+uid, true);
+  	xhttp.send();
+	}
+
+	function getValue(uid, key, callback){
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function(){
+			if (xhttp.readyState == 4 && xhttp.status == 200) {
+	      callback(JSON.parse(xhttp.responseText));
+	    }
+		}
+
+		xhttp.open("GET", API_BASE+"/event?customerID="+uid+"&key="+key, true);
+  	xhttp.send();
+	}
+
+	function setValue(uid, key, value, callback){
+		var data = {
+			"customerID": uid,
+			"key": key,
+			"value": value
+		}
+
+		var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() {
+	    if (xhttp.readyState == 4 && xhttp.status == 200) {
+	      callback(JSON.parse(xhttp.responseText));
+	    }
+	  };
+	  xhttp.open("POST", API_BASE+'/event', true);
+	  xhttp.setRequestHeader("Content-type", "application/json");
+	  xhttp.send(JSON.stringify(data));
+
+	}
+
+})();
+/**
+ * @author Mario Harper
+ * @description Module for handling onboarding navigation pane.
+ */
+'use strict';
+
+var Onboarding = Onboarding || {};
+
+Onboarding.Nav = (function(){
+
+	// public
+	var nav = {
+		init: init,
+		checkoffItem: checkoffItem
+	}
+
+	//private
+	var _customerID;
+
+	return nav;
+
+	//////////////////////
+
+	function init(params){
+		_customerID = params.customerID || null;
+
+	  $('.help-launcher-button').click(function(){
+	  	$('#help-nav .helper').attr("src", "");
+	  	$('#help-nav .helper').attr("src", "https://d13yacurqjgara.cloudfront.net/users/291221/screenshots/1425333/helper.gif");
+	    $('#help-nav').toggleClass('active');
+	  });
+
+	  $('#help-nav .close').click(function(){
+	    $('#help-nav').toggleClass('active');
+	  });
+
+	  $('#help-nav li').click(function(){
+	    $('#help-nav li').removeClass('active');
+	    $(this).addClass('active');
+	  });
+
+	  _setProgress();
+
+	}
+
+	function checkoffItem(element, save){
+		var helpListItem = $(element);
+		if(helpListItem.attr('checked')) return;
+
+		helpListItem.children('.check-box').append('<i class="material-icons">check_circle</i>');
+		helpListItem.attr('checked', true);
+		if(save === true){
+
+			Onboarding.Service.setValue(_customerID, helpListItem.attr('data-onboarding-item'), true, function(data){
+        console.log('Progress Saved');
+      });
+		}
+
+	}
+
+	function _setProgress(){
+	  /* get the users current progress in onboarding */
+  	Onboarding.Service.getProgress(_customerID, function(data){
+  		//checkoff the completed onboarding items
+  		if(data){
+  			for(var i = 0, x = data.length; i < x; i++){
+  				var item = document.querySelector('[data-onboarding-item='+data[i].Key+']');
+  				Onboarding.Nav.checkoffItem(item);	
+  			}
+  		}
+  	});
+	}
+
+
+})();
+/**
+ * @author Mario Harper
+ * @description Module for  handling tour aspect of onboarding. 
+ * 
+ * Dependency on Hopscotch.
+ */
+'use strict';
+
+var Onboarding = Onboarding || {};
+
+Onboarding.Tour = (function(){
+
+	var tour = {
+		startIntroTour: startIntroTour,
+		startAddProductTour: startAddProductTour,
+		startAddLogoTour: startAddLogoTour
+	}
+
+	return tour;
+
+	/////////////////////////////
+
+	function startIntroTour(){
+    var tour = {
+      id: "welcome",
+      steps: [
+        {
+          title: "View Your Store",
+          content: "View your online store at any time",
+          target: document.querySelector('.storefront-toggle'),
+          placement: "bottom",
+          xOffset: -10,
+          fixedElement: true
+        },
+        {
+          title: "Getting Started Steps",
+          content: "Not sure where to start? We've got some tasks you can get started on.",
+          target: document.querySelector('.help-launcher-button'),
+          placement: "top",
+          xOffset: -200,
+          arrowOffset: 200,
+          fixedElement: true
+        }
+      ]
+    };
+
+    // Start the tour!
+    hopscotch.startTour(tour);
+	}
+
+	function startAddProductTour(){
+		var tour = {
+      id: "addProduct",
+      steps: [
+        {
+          title: 'Hover over "Inventory".',
+          target: document.querySelector('#MainNav_Inventory'),
+          placement: "bottom",
+          xOffset: 8,
+          onNext: function(){
+          	document.querySelector('#MainNav_Inventory .SubMenuWrapper').style.display = "block";
+          }
+        },
+        {
+          title: 'Select "Products".',
+          target: document.querySelector('#Inventory_SubNav_Products'),
+          placement: "right"
+        }
+      ],
+      onEnd: function(){
+      	Onboarding.Nav.checkoffItem(document.querySelector('#help-add-product'), true);
+      	document.querySelector('#MainNav_Inventory .SubMenuWrapper').style.display = "none";
+      }
+    };
+
+    // Start the tour!
+    hopscotch.startTour(tour);
+	}
+
+	function startAddLogoTour(){
+		var tour = {
+      id: "addLogo",
+      steps: [
+        {
+          title: 'Hover over "Design".',
+          target: document.querySelector('#MainNav_Design'),
+          placement: "bottom",
+          xOffset: 8,
+          onNext: function(){
+          	document.querySelector('#MainNav_Design .SubMenuWrapper').style.display = "block";
+          }
+        },
+        {
+          title: 'Select "Logos".',
+          target: document.querySelector('#Design_SubNav_Logos'),
+          placement: "right"
+        }
+      ],
+      onEnd: function(){
+      	Onboarding.Nav.checkoffItem(document.querySelector('#help-add-logo'), true);
+      	document.querySelector('#MainNav_Design .SubMenuWrapper').style.display = "none";
+      }
+    };
+
+    // Start the tour!
+    hopscotch.startTour(tour);
+	}
+})();
