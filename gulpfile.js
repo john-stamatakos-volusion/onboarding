@@ -71,7 +71,8 @@ gulp.task('scripts', function(){
     './src/assets/js/onboarding.helpers.js',
     './src/assets/js/onboarding.service.js',
     './src/assets/js/onboarding.nav.js',
-    './src/assets/js/onboarding.tour.js'
+    './src/assets/js/onboarding.tour.js',
+    './src/assets/js/optimizely.init.js'
   ];
 
   return gulp.src(src)
