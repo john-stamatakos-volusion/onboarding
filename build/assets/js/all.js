@@ -3312,8 +3312,9 @@ Onboarding.Nav = (function(){
 	  });
 
 	  $('#help-nav li').click(function(){
-	    $('#help-nav li').removeClass('active');
-	    $(this).addClass('active');
+	  	$('#help-nav li').removeClass('active');
+    	$(this).addClass('active');
+	    _subNav(this);
 	  });
 
 	  _setProgress();
@@ -3354,6 +3355,60 @@ Onboarding.Nav = (function(){
   			}
   		}
   	});
+	}
+
+	function _subNav(element) {
+
+		var position = $(element).position();
+		var width = $(element).outerWidth();
+		var step = $(element).attr('data-onboarding-item');
+		var currentOpen = $(element).hasClass('open');
+		var anyOpen = $('#help-nav li').hasClass('open');
+
+		if(currentOpen){
+			closeSubNav(element, position, width);
+		}
+		else if(anyOpen){
+			closeSubNav(element, position, width, openSubNav);
+		}
+		else {
+			openSubNav(element, position, width);
+		}
+
+	}
+
+	function closeSubNav(element, position, width, callback) {
+		$('#help-nav li').removeClass('open');
+		$( "#panel-subnav" ).animate({
+			right: "-600px"
+		}, 300, function() {
+			$('#panel-subnav').css({
+				top: position.top + "px",
+				right: (position.right + width) + "px",
+				height: "21px"
+			});
+			if(callback){
+				callback(element, position, width);
+			}
+		});
+	}
+
+	function openSubNav(element, position, width) {
+		$('#panel-subnav').css({
+			top: position.top + "px",
+			right: (position.right + width) + "px"
+		}).show(0, function() {
+			$('#help-nav li').removeClass('open');
+  		$(element).addClass('open');
+			$( "#panel-subnav" ).animate({
+		    right: "360px"
+		  }, 300, function() {
+		    $('#panel-subnav').animate({
+		    	height: "80vh",
+		    	top: "100px"
+		    }, 300);
+		  });
+		});
 	}
 
 
