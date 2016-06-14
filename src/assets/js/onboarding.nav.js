@@ -24,7 +24,7 @@ Onboarding.Nav = (function(){
 	function init(params){
 		_customerID = params.customerID || null;
 
-	  $('.help-launcher-button').click(function(){
+	  $('.help-nav-launcher-button').click(function(){
 	  	$('#help-nav .helper').attr("src", "");
 	  	$('#help-nav .helper').attr("src", "https://d13yacurqjgara.cloudfront.net/users/291221/screenshots/1425333/helper.gif");
 	    $('#help-nav').toggleClass('active');

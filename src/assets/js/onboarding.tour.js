@@ -38,10 +38,10 @@ Onboarding.Tour = (function(){
         {
           title: "Getting Started Steps",
           content: "Not sure where to start? We've got some tasks you can get started on.",
-          target: document.querySelector('.help-launcher-button'),
+          target: document.querySelector('.help-nav-launcher-button'),
           placement: "top",
-          xOffset: -200,
-          arrowOffset: 200,
+          xOffset: -270,
+          arrowOffset: 270,
           fixedElement: true
         }
       ]

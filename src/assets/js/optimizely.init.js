@@ -1,15 +1,16 @@
 (function(){
 	'use strict';
 
-	window.adm_storeid = 'abc1234'; // TESTING
+	//window.adm_storeid = 'abc1234'; // TESTING
 
 	// find the storeID, remove dashes
 	var storeID = (window.adm_storeid || idFromURL(window.location.href) || null)
 	if(!storeID){
 		console.log("Store ID: Not found. Onboarding will not persist.");
-	}
+	}else{
+    storeID = storeID.replace(/-/g, ''); // remove dashes
+  }
 
-	storeID = storeID.replace(/-/g, ''); // remove dashes
 	console.log("Store ID:", storeID);
 
   insertHTML();
@@ -39,6 +40,7 @@ function idFromURL(url){
 } 
 
 function insertHTML(){
+  var iconsHTML = '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">';
   // create the HTML for the module
   var navHTML = 
   '<div id="help-nav" class="card">' +
@@ -46,7 +48,7 @@ function insertHTML(){
       '<i class="material-icons">close</i>'+
     '</div>'+
     '<ul>'+
-      '<li data-onboarding-item="watchVideo" id="help-intro-video" class="modal-trigger" href="#modal1">'+
+      '<li data-onboarding-item="watchVideo" id="help-intro-video" class="modal-trigger" href="#help-nav-modal" onclick="Onboarding.Nav.checkoffItem(this, true);">'+
         '<span class="check-box"></span>'+
         '<span class="todo-msg">Watch introduction video</span>'+
         '<span class="done-msg">You watched the introduction video<span>'+
@@ -100,5 +102,8 @@ function insertHTML(){
   '</div>';
 
   // append HTML to body
-  document.querySelector('body').innerHTML += navHTML + navBtnHTML + modalHTML;
+  $('head').append(iconsHTML);
+  $('body').append(navHTML);
+  $('body').append(navBtnHTML);
+  $('body').append(modalHTML);
 }

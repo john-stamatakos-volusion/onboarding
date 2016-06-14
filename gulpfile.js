@@ -12,6 +12,7 @@ var rename = require('gulp-rename');
 var del = require('del');
 var browserSync = require('browser-sync');
 var runSequence = require('run-sequence');
+var css2js = require('gulp-css2js');
 
 // Delete Build folder
 gulp.task('clean', function() {
@@ -66,17 +67,35 @@ gulp.task('scripts', function(){
     './node_modules/vbox/js/sideNav.js',
     './node_modules/vbox/js/leanModal.js',
     './node_modules/hopscotch/dist/js/hopscotch.js',
-    
+    './build/assets/js/onboarding.js'
+  ];
+
+  return gulp.src(src)
+    .pipe(concat('all.js'))
+    .pipe(gulp.dest('build/assets/js/'))
+    .pipe(browserSync.stream({match: '**/*.js'}));
+});
+
+gulp.task('onboarding:css2js', ['sass'], function(){
+  return gulp.src('./build/assets/stylesheets/main.css')
+    .pipe(css2js())
+    .pipe(concat('onboarding.css.js'))
+    .pipe(gulp.dest('./src/assets/js/'));
+});
+
+gulp.task('onboarding:js', function(){
+  var src = [
     './src/assets/js/onboarding.js',
     './src/assets/js/onboarding.helpers.js',
     './src/assets/js/onboarding.service.js',
     './src/assets/js/onboarding.nav.js',
     './src/assets/js/onboarding.tour.js',
-    './src/assets/js/optimizely.init.js'
+    './src/assets/js/optimizely.init.js',
+    './src/assets/js/onboarding.css.js'
   ];
 
   return gulp.src(src)
-    .pipe(concat('all.js'))
+    .pipe(concat('onboarding.js'))
     .pipe(gulp.dest('build/assets/js/'))
     .pipe(browserSync.stream({match: '**/*.js'}));
 });
@@ -94,7 +113,9 @@ gulp.task('watch', function() {
 
 gulp.task('serve', function(callback) {
   runSequence('clean',
-              ['html', 'images', 'sass', 'scripts', 'watch'],
+              ['html', 'images', 'sass'],
+              ['onboarding:js'], 
+              ['scripts', 'watch'],
               'browser-sync',
               callback);
 });
