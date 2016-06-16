@@ -11,9 +11,9 @@ var Onboarding = Onboarding || {};
 Onboarding.Tour = (function(){
 
 	var tour = {
-		startIntroTour: startIntroTour,
-		startAddProductTour: startAddProductTour,
-		startAddLogoTour: startAddLogoTour
+		// startIntroTour: startIntroTour,
+		// startAddProductTour: startAddProductTour,
+		// startAddLogoTour: startAddLogoTour
 	}
 
 	return tour;

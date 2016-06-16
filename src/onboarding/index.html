@@ -435,9 +435,71 @@
         </div><!-- .container -->
       </section><!-- .section-class -->		
 
-      <div id="panel-subnav"></div>
+      <div id="panel-subnav">
+	      <div class="container"></div>
+      </div>
 
     </div><!-- #main -->
     <script src="/assets/js/all.js"></script>
+
+
+    <!-- *** Panel Templates *** -->
+    <script src="//fast.wistia.com/embed/medias/s5ai57iv3r.jsonp" async></script>
+  	<script src="//fast.wistia.com/assets/external/E-v1.js" async></script>
+
+    <!-- Video Template -->
+    <script type="text/template" id="watchVideo">
+    	<h3>Let's get started!</h3>
+    	<span class="wistia_embed wistia_async_s5ai57iv3r popover=true popoverAnimateThumbnail=false" style="display:inline-block;height:384px;width:500px">&nbsp;</span>
+    </script>
+
+    <!-- Product Template -->
+    <script type="text/template" id="addProduct">
+			<div class="row">
+				<h3 class="text-left di">Add a Product</h3> 
+			  <button class="right btn btn-small red btn-small">Close</button>
+			  <button class="right btn btn-small blue margin-right-xs btn-small">Save</button>
+			</div>
+
+			<form>
+			  <div class="row margin-bottom-0">
+			  	<div class="col xs6">
+					  <label>Product Name</label>
+					  <input type="text" /> 
+				  </div>
+				  <div class="col xs6">
+					  <label>Price (USD)</label>
+					  <input type="number" /> 
+				  </div>
+				</div>
+			  <div class="row">
+			  	<div class="col xs6">
+					  <label>Product Code</label>
+					  <input type="text" /> 
+					</div>
+					<div class="col xs6">
+					  <label>Weight</label>
+					  <input type="text" /> 
+				  </div>
+			  </div>
+			  <div class="row">
+				  <label>Description</label>
+				  <textarea class="materialize-textarea"></textarea>
+			  </div>
+			  <div class="row">
+			    <div class="file-field input-field">
+			      <div class="btn green full-width margin-top-m"> <span>Upload an Image</span>
+			        <input type="file"> </div>
+			    </div>
+			  </div>
+			</form>
+    </script>
+
+    <!-- Logo Template -->
+    <script type="text/template" id="addLogo">
+    	<h3>Logo</h3>
+    </script>
+
+
 </body>
 </html>

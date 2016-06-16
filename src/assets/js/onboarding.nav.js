@@ -32,6 +32,8 @@ Onboarding.Nav = (function(){
 
 	  $('#help-nav .close').click(function(){
 	    $('#help-nav').toggleClass('active');
+	    $('#help-nav li').removeClass('active');
+	    _closeSubNav(this, $(this).position(), $(this).outerWidth());
 	  });
 
 	  $('#help-nav li').click(function(){
@@ -84,23 +86,22 @@ Onboarding.Nav = (function(){
 
 		var position = $(element).position();
 		var width = $(element).outerWidth();
-		var step = $(element).attr('data-onboarding-item');
 		var currentOpen = $(element).hasClass('open');
 		var anyOpen = $('#help-nav li').hasClass('open');
 
 		if(currentOpen){
-			closeSubNav(element, position, width);
+			_closeSubNav(element, position, width);
 		}
 		else if(anyOpen){
-			closeSubNav(element, position, width, openSubNav);
+			_closeSubNav(element, position, width, _openSubNav);
 		}
 		else {
-			openSubNav(element, position, width);
+			_openSubNav(element, position, width);
 		}
 
 	}
 
-	function closeSubNav(element, position, width, callback) {
+	function _closeSubNav(element, position, width, callback) {
 		$('#help-nav li').removeClass('open');
 		$( "#panel-subnav" ).animate({
 			right: "-600px"
@@ -116,7 +117,7 @@ Onboarding.Nav = (function(){
 		});
 	}
 
-	function openSubNav(element, position, width) {
+	function _openSubNav(element, position, width) {
 		$('#panel-subnav').css({
 			top: position.top + "px",
 			right: (position.right + width) + "px"
@@ -132,6 +133,18 @@ Onboarding.Nav = (function(){
 		    }, 300);
 		  });
 		});
+
+		_setPanelContent(element);
+	}
+
+	function _setPanelContent(element) {
+
+		var content = document.getElementById(element.dataset.onboardingItem);
+
+		if(content) {
+			document.querySelector('#panel-subnav .container').innerHTML = content.innerHTML;
+		}
+
 	}
 
 

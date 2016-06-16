@@ -3159,7 +3159,10 @@ Onboarding.Helpers = (function(){
 
   var helpers = {
     setCookie: setCookie,
-    getCookie: getCookie
+    getCookie: getCookie,
+    addClass: addClass,
+    removeClass: removeClass,
+    hasClass: hasClass
   }
 
   return helpers;
@@ -3187,6 +3190,29 @@ Onboarding.Helpers = (function(){
     }
     return "";
   }
+
+  function addClass(el, className) {
+    if (el.classList)
+      el.classList.add(className)
+    else if (!hasClass(el, className)) el.className += " " + className
+  }
+
+  function removeClass(el, className) {
+    if (el.classList)
+      el.classList.remove(className)
+    else if (hasClass(el, className)) {
+      var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
+      el.className=el.className.replace(reg, ' ')
+    }
+  }
+
+  function hasClass(el, className) {
+    if (el.classList)
+      return el.classList.contains(className)
+    else
+      return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
+  }
+
 })();
 
 /**
@@ -3309,6 +3335,8 @@ Onboarding.Nav = (function(){
 
 	  $('#help-nav .close').click(function(){
 	    $('#help-nav').toggleClass('active');
+	    $('#help-nav li').removeClass('active');
+	    _closeSubNav(this, $(this).position(), $(this).outerWidth());
 	  });
 
 	  $('#help-nav li').click(function(){
@@ -3361,23 +3389,22 @@ Onboarding.Nav = (function(){
 
 		var position = $(element).position();
 		var width = $(element).outerWidth();
-		var step = $(element).attr('data-onboarding-item');
 		var currentOpen = $(element).hasClass('open');
 		var anyOpen = $('#help-nav li').hasClass('open');
 
 		if(currentOpen){
-			closeSubNav(element, position, width);
+			_closeSubNav(element, position, width);
 		}
 		else if(anyOpen){
-			closeSubNav(element, position, width, openSubNav);
+			_closeSubNav(element, position, width, _openSubNav);
 		}
 		else {
-			openSubNav(element, position, width);
+			_openSubNav(element, position, width);
 		}
 
 	}
 
-	function closeSubNav(element, position, width, callback) {
+	function _closeSubNav(element, position, width, callback) {
 		$('#help-nav li').removeClass('open');
 		$( "#panel-subnav" ).animate({
 			right: "-600px"
@@ -3393,7 +3420,7 @@ Onboarding.Nav = (function(){
 		});
 	}
 
-	function openSubNav(element, position, width) {
+	function _openSubNav(element, position, width) {
 		$('#panel-subnav').css({
 			top: position.top + "px",
 			right: (position.right + width) + "px"
@@ -3409,6 +3436,18 @@ Onboarding.Nav = (function(){
 		    }, 300);
 		  });
 		});
+
+		_setPanelContent(element);
+	}
+
+	function _setPanelContent(element) {
+
+		var content = document.getElementById(element.dataset.onboardingItem);
+
+		if(content) {
+			document.querySelector('#panel-subnav .container').innerHTML = content.innerHTML;
+		}
+
 	}
 
 
@@ -3426,9 +3465,9 @@ var Onboarding = Onboarding || {};
 Onboarding.Tour = (function(){
 
 	var tour = {
-		startIntroTour: startIntroTour,
-		startAddProductTour: startAddProductTour,
-		startAddLogoTour: startAddLogoTour
+		// startIntroTour: startIntroTour,
+		// startAddProductTour: startAddProductTour,
+		// startAddLogoTour: startAddLogoTour
 	}
 
 	return tour;
@@ -3579,7 +3618,7 @@ function insertHTML(){
       '<i class="material-icons">close</i>'+
     '</div>'+
     '<ul>'+
-      '<li data-onboarding-item="watchVideo" id="help-intro-video" class="modal-trigger" href="#help-nav-modal" onclick="Onboarding.Nav.checkoffItem(this, true);">'+
+      '<li data-onboarding-item="watchVideo" id="help-intro-video" onclick="Onboarding.Nav.checkoffItem(this, true);">'+
         '<span class="check-box"></span>'+
         '<span class="todo-msg">Watch introduction video</span>'+
         '<span class="done-msg">You watched the introduction video<span>'+
@@ -3624,19 +3663,11 @@ function insertHTML(){
     '<i class="material-icons">playlist_add_check</i>' +
   '</div>';
 
-  var modalHTML = 
-  '<div id="help-nav-modal" class="modal">'+
-    '<i class="material-icons modal-action modal-close">close</i>'+
-    '<div class="modal-content">'+
-      '<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_s5ai57iv3r seo=false videoFoam=true" style="height:100%;width:100%">&nbsp;</div></div></div>'+
-    '</div>'+
-  '</div>';
 
   // append HTML to body
   $('head').append(iconsHTML);
   $('body').append(navHTML);
   $('body').append(navBtnHTML);
-  $('body').append(modalHTML);
 }
 
 (function (doc, cssText) {

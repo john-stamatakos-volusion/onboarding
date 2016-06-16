@@ -48,7 +48,7 @@ function insertHTML(){
       '<i class="material-icons">close</i>'+
     '</div>'+
     '<ul>'+
-      '<li data-onboarding-item="watchVideo" id="help-intro-video" class="modal-trigger" href="#help-nav-modal" onclick="Onboarding.Nav.checkoffItem(this, true);">'+
+      '<li data-onboarding-item="watchVideo" id="help-intro-video" onclick="Onboarding.Nav.checkoffItem(this, true);">'+
         '<span class="check-box"></span>'+
         '<span class="todo-msg">Watch introduction video</span>'+
         '<span class="done-msg">You watched the introduction video<span>'+
@@ -93,17 +93,9 @@ function insertHTML(){
     '<i class="material-icons">playlist_add_check</i>' +
   '</div>';
 
-  var modalHTML = 
-  '<div id="help-nav-modal" class="modal">'+
-    '<i class="material-icons modal-action modal-close">close</i>'+
-    '<div class="modal-content">'+
-      '<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_s5ai57iv3r seo=false videoFoam=true" style="height:100%;width:100%">&nbsp;</div></div></div>'+
-    '</div>'+
-  '</div>';
 
   // append HTML to body
   $('head').append(iconsHTML);
   $('body').append(navHTML);
   $('body').append(navBtnHTML);
-  $('body').append(modalHTML);
 }

@@ -32,7 +32,7 @@ gulp.task('browser-sync', function() {
         tunnel: false // only need to enable this if with a device not on the same wifi - crashes often so off by default
     });
 
-    gulp.watch(['src/**/*.html'], function () {
+    gulp.watch(['src/**/*.html', 'src/**/*.js'], function () {
         runSequence(
             'html',
             browserSync.reload
@@ -58,7 +58,7 @@ gulp.task('sass', function () {
     .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
-gulp.task('scripts', function(){
+gulp.task('scripts', ['onboarding:js'], function(){
   var src = [
     './node_modules/jquery/dist/jquery.min.js',
     './node_modules/vbox/js/hammer.min.js',
