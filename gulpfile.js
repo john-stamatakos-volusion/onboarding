@@ -76,13 +76,6 @@ gulp.task('scripts', ['onboarding:js'], function(){
     .pipe(browserSync.stream({match: '**/*.js'}));
 });
 
-gulp.task('onboarding:css2js', ['sass'], function(){
-  return gulp.src('./build/assets/stylesheets/main.css')
-    .pipe(css2js())
-    .pipe(concat('onboarding.css.js'))
-    .pipe(gulp.dest('./src/assets/js/'));
-});
-
 gulp.task('onboarding:js', function(){
   var src = [
     './src/assets/js/onboarding.js',

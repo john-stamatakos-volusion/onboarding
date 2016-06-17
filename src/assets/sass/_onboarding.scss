@@ -51,7 +51,7 @@
   background-position: 50%;
   background-color: #0074b0;
   border: 1px solid #004c88;
-  z-index: 1000;
+  z-index: 100000;
 
   i{
 	  position: absolute;
@@ -71,7 +71,7 @@
 	margin: 0;
 	padding: 50px 0 0 0;
 	background-color: white;
-	z-index: 90;
+	z-index: 99999;
 	overflow-y: auto;
 
 	transition: all .4s ease-in;
