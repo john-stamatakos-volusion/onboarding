@@ -23,10 +23,14 @@ Onboarding.Nav = (function(){
 
 	function init(params){
 		_customerID = params.customerID || null;
+		_position = $('')
 
 	  $('.help-nav-launcher-button').click(function(){
 	  	$('#help-nav .helper').attr("src", "");
 	  	$('#help-nav .helper').attr("src", "https://d13yacurqjgara.cloudfront.net/users/291221/screenshots/1425333/helper.gif");
+	  	if ($('#help-nav').hasClass('active')) {
+	  		_closeSubNav(this, $(this).position(), $(this).outerWidth());
+	  	}
 	    $('#help-nav').toggleClass('active');
 	  });
 
@@ -55,7 +59,7 @@ Onboarding.Nav = (function(){
 		var helpListItem = $(element);
 		if(helpListItem.attr('checked')) return;
 
-		helpListItem.children('.check-box').append('<i class="material-icons">check_circle</i>');
+		helpListItem.children('.check-box').append('<i class="material-icons">check</i>');
 		helpListItem.attr('checked', true);
 		if(save === true){
 
@@ -109,7 +113,7 @@ Onboarding.Nav = (function(){
 			$('#panel-subnav').css({
 				top: position.top + "px",
 				right: (position.right + width) + "px",
-				height: "21px"
+				height: "61px"
 			});
 			if(callback){
 				callback(element, position, width);
@@ -128,13 +132,14 @@ Onboarding.Nav = (function(){
 		    right: "360px"
 		  }, 300, function() {
 		    $('#panel-subnav').animate({
-		    	height: "80vh",
-		    	top: "100px"
+		    	height: "100vh",
+		    	top: "0"
 		    }, 300);
 		  });
 		});
 
 		_setPanelContent(element);
+
 	}
 
 	function _setPanelContent(element) {

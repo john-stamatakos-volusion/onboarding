@@ -22,7 +22,7 @@
 
   <!-- robots -->
   <meta name="robots" content="noindex, nofollowindex, follow">
-  <link href="http://v2223016.zg4m7w74357a.demo47.volusion.com/a/a/v13/c/all.min.css?6_5_7.31.0.717_1309859965" rel="stylesheet" type="text/css">
+  <link href="http://v2232709.fs5fr7yod7tr.demo44.volusion.com/a/a/v13/c/all.min.css?6_5_7.32.0.839_1309859965" rel="stylesheet" type="text/css">
 </head>
 <body class="onboarding">
 
@@ -107,7 +107,8 @@
             barToggle.checked = true;
         } else if(!isAdmin){
             document.body.className += " vp-top-bar-padding";
-            barToggle.checked = false;
+            if(barToggle)
+           		barToggle.checked = false;
         }
 
         function getMerchantPreferences(key) {
@@ -441,46 +442,48 @@
 			</div>
 
       <div id="help-nav" class="card"> 
-		    <div class="close right">  
-		      <i class="material-icons">close</i>
+		    
+		    <div class="panel-header">
+		    	<div class="close text-right">Hide</div>
+		    	<h3 class="h1">Welcome!</h3>
+		    	<p>In a few steps you will have your store up and running.  Let's get started!</p>
 		    </div>
 		    <ul>
-		      <li data-onboarding-item="watchVideo" id="help-intro-video" onclick="Onboarding.Nav.checkoffItem(this, true);">
+		    	<li data-onboarding-item="selectTemplate" id="help-select-template" onclick="Onboarding.Nav.checkoffItem(this, true);">
+		        <span class="todo-msg">Select a Template</span>
 		        <span class="check-box"></span>
-		        <span class="todo-msg">Watch introduction video</span>
-		        <span class="done-msg">You watched the introduction video<span>
 		      </li>
-		      <li data-onboarding-item="addProduct" id="help-add-product" onclick="Onboarding.Tour.startAddProductTour();">
-		        <span class="check-box"></span>          
+		      <li data-onboarding-item="addLogo" id="help-add-logo" onclick="Onboarding.Nav.checkoffItem(this, true);">
+		        <span class="todo-msg">Logo/Site Name</span>
+		        <span class="check-box"></span>
+		      </li>
+		      <li data-onboarding-item="addNavigation" id="help-add-navigation" onclick="Onboarding.Nav.checkoffItem(this, true);">
+		        <span class="todo-msg">Navigation/Categories</span>
+		        <span class="check-box"></span>
+		      </li>
+		      <li data-onboarding-item="addProduct" id="help-add-product" onclick="Onboarding.Nav.checkoffItem(this, true);">         
 		        <span class="todo-msg">Add a product</span>
-		        <span class="done-msg">You added a product</span>
+		        <span class="check-box"></span> 
 		      </li>
-		      <li data-onboarding-item="addLogo" id="help-add-logo" onclick="Onboarding.Tour.startAddLogoTour();">
-		        <span class="check-box"></span>
-		        <span class="todo-msg">Add your logo</span>
-		        <span class="done-msg">You added your logo</span>
+		      <li data-onboarding-item="addContent" id="help-add-content" onclick="Onboarding.Nav.checkoffItem(this, true);">         
+		        <span class="todo-msg">Content</span>
+		        <span class="check-box"></span> 
 		      </li>
-		      <li data-onboarding-item="addStoreInfo" onclick="Onboarding.Nav.checkoffItem(this, true);">
-		        <span class="check-box"></span>
-		        <span class="todo-msg">Add store info</span>
-		        <span class="done-msg">Your store info is complete</span>
+		      <li data-onboarding-item="seo" id="help-seo" onclick="Onboarding.Nav.checkoffItem(this, true);">         
+		        <span class="todo-msg">SEO</span>
+		        <span class="check-box"></span> 
 		      </li>
-		      <li data-onboarding-item="sellOnSocialSetup" onclick="Onboarding.Nav.checkoffItem(this, true);">
-		        <span class="check-box"></span>
-		        <span class="todo-msg">Sell on social</span>
-		        <span class="done-msg">You are waiting to sell on social</span>
+		      <li data-onboarding-item="shipping" id="help-shipping" onclick="Onboarding.Nav.checkoffItem(this, true);">         
+		        <span class="todo-msg">Shipping</span>
+		        <span class="check-box"></span> 
 		      </li>
-		      <li data-onboarding-item="bookmarkStore" onclick="Onboarding.Nav.checkoffItem(this, true);">
-		        <span class="check-box"></span>
-		        <span class="todo-msg">Bookmark your store</span>
-		        <span class="done-msg">Your store is bookmarked</span>
+		      <li data-onboarding-item="configureTaxes" id="help-configure-taxes" onclick="Onboarding.Nav.checkoffItem(this, true);">    
+		        <span class="todo-msg">Configure Taxes</span>
+		        <span class="check-box"></span> 
 		      </li>
-		      <li data-onboarding-item="selectPlan" onclick="Onboarding.Nav.checkoffItem(this, true);"> 
-		        <span class="check-box"></span>
-		        <span class="todo-msg">Select a plan</span>
-		        <span class="done-msg">You selected a plan</span>
-		        <span class="todo-msg badge">6 days left in free trial</span>
-		        <span class="done-msg badge">PRO</span>
+		      <li data-onboarding-item="businessEmail" id="help-business-email" onclick="Onboarding.Nav.checkoffItem(this, true);">      
+		        <span class="todo-msg">Business Email</span>
+		        <span class="check-box"></span> 
 		      </li>
 		    </ul>
 		  </div>
@@ -499,13 +502,22 @@
     <script src="//fast.wistia.com/embed/medias/s5ai57iv3r.jsonp" async></script>
   	<script src="//fast.wistia.com/assets/external/E-v1.js" async></script>
 
-    <!-- Video Template -->
-    <script type="text/template" id="watchVideo">
-    	<h3>Let's get started!</h3>
-    	<span class="wistia_embed wistia_async_s5ai57iv3r popover=true popoverAnimateThumbnail=false" style="display:inline-block;height:384px;width:500px">&nbsp;</span>
+    <!-- Select Template Template -->
+    <script type="text/template" id="selectTemplate">
+    	<h3>Template</h3>
     </script>
 
-    <!-- Product Template -->
+    <!-- Logo/Site Name Template -->
+    <script type="text/template" id="addLogo">
+    	<h3>Logo/Site Name</h3>
+    </script>
+
+    <!-- Navigation/Categories Template -->
+    <script type="text/template" id="addNavigation">
+    	<h3>Navigation/Categories</h3>
+    </script>
+
+    <!-- Add Products Template -->
     <script type="text/template" id="addProduct">
 			<div class="row">
 				<h3 class="text-left di">Add a Product</h3> 
@@ -547,9 +559,35 @@
 			</form>
     </script>
 
-    <!-- Logo Template -->
-    <script type="text/template" id="addLogo">
-    	<h3>Logo</h3>
+    <!-- Content Template -->
+    <script type="text/template" id="addContent">
+    	<h3>Content</h3>
+    </script>
+
+    <!-- SEO Template -->
+    <script type="text/template" id="seo">
+    	<h3>SEO</h3>
+    </script>
+
+    <!-- Shipping Template -->
+    <script type="text/template" id="shipping">
+    	<h3>Shipping</h3>
+    </script>
+
+    <!-- Configure Taxes Template -->
+    <script type="text/template" id="configureTaxes">
+    	<h3>Configure Taxes</h3>
+    </script>
+
+    <!-- Business Email Template -->
+    <script type="text/template" id="businessEmail">
+    	<h3>Business Email</h3>
+    </script>
+
+    <!-- Video Template -->
+    <script type="text/template" id="watchVideo">
+    	<h3>Let's get started!</h3>
+    	<span class="wistia_embed wistia_async_s5ai57iv3r popover=true popoverAnimateThumbnail=false" style="display:inline-block;height:384px;width:500px">&nbsp;</span>
     </script>
 
 
