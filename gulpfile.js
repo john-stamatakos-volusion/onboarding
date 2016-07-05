@@ -60,7 +60,6 @@ gulp.task('sass', function () {
 
 gulp.task('scripts', ['onboarding:js'], function(){
   var src = [
-    './node_modules/jquery/dist/jquery.min.js',
     './node_modules/vbox/js/hammer.min.js',
     './node_modules/vbox/js/jquery.hammer.js',
     './node_modules/vbox/js/velocity.min.js',

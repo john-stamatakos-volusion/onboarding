@@ -1,5 +1,18 @@
 /* base */
-@import 'vbox/sass/materialize';
+// Mixins
+@import "vbox/sass/components/prefixer";
+@import "vbox/sass/components/mixins";
+@import "vbox/sass/components/color";
+
+// Variables;
+@import "vbox/sass/components/variables";
+
+// Reset
+
+@import "vbox/sass/components/global";
+@import "vbox/sass/components/grid";
+@import "vbox/sass/components/typography";
+@import "vbox/sass/components/cards";
 @import 'onboarding';
-@import 'hopscotch';
+//@import 'hopscotch';
 @import 'dashboard';

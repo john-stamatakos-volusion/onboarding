@@ -15,7 +15,7 @@ var Onboarding = (function(){
 	//////////////////////
 
 	function init(params){
-		Onboarding.Nav.init({customerID: params.customerID});
+		Onboarding.Nav.init({id: params.id});
 	}
 
 })();

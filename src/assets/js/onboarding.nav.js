@@ -15,14 +15,14 @@ Onboarding.Nav = (function(){
 	}
 
 	//private
-	var _customerID;
+	var _id;
 
 	return nav;
 
 	//////////////////////
 
 	function init(params){
-		_customerID = params.customerID || null;
+		_id = params.id || null;
 		_position = $('')
 
 	  $('.help-nav-launcher-button').click(function(){
@@ -51,9 +51,8 @@ Onboarding.Nav = (function(){
 	}
 
 	/**
-	 * Checks off an item in the side nav, also able to save the check to Onboarding database table.
+	 * Checks off an item in the side nav
 	 * @param  {Object} element  DOM element to check off.
-	 * @param  {[type]} save     Save to database?
 	 */
 	function checkoffItem(element, save){
 		var helpListItem = $(element);
@@ -61,13 +60,6 @@ Onboarding.Nav = (function(){
 
 		helpListItem.children('.check-box').append('<i class="material-icons">check</i>');
 		helpListItem.attr('checked', true);
-		if(save === true){
-
-			Onboarding.Service.setValue(_customerID, helpListItem.attr('data-onboarding-item'), true, function(data){
-        console.log('Progress Saved');
-      });
-		}
-
 	}
 
 	/**
@@ -75,11 +67,12 @@ Onboarding.Nav = (function(){
 	 */
 	function _setProgress(){
 	  /* get the users current progress in onboarding */
-  	Onboarding.Service.getProgress(_customerID, function(data){
+  	Onboarding.Service.getProgress(_id, function(data){
+  		console.log("events", data);
   		//checkoff the completed onboarding items
   		if(data){
   			for(var i = 0, x = data.length; i < x; i++){
-  				var item = document.querySelector('[data-onboarding-item='+data[i].Key+']');
+  				var item = document.querySelector('[data-onboarding-item='+data[i].type+']');
   				Onboarding.Nav.checkoffItem(item);	
   			}
   		}
